@@ -28,6 +28,40 @@ module.exports = function (app, addon) {
         }
     );
 
+    app.get('/view-customer', addon.authenticate(), function (req, res) {
+            var httpClient = addon.httpClient(req);
+            var contentId  = req.query['contentId'];
+            
+            httpClient.get({
+                url: '/rest/api/content/' + contentId + '/property',
+                json: true
+            }, function (err, response) {
+                if (err) { 
+                    res.send("Error: " + response.statusCode + ": " + err);
+                }
+                else {
+                    var customerData = response.body.results.filter(function(result) {return result.key == "customer-data"})
+                    res.render('view-customer', {
+                        values: customerData[0].value,
+                        contentId: contentId
+                    });
+                }
+            })
+        }
+    );
+
+    app.get('/list-customers', addon.authenticate(), function (req, res) {
+            res.render('list-customers');
+        }
+    );
+
+    app.get('/add-new-customer', addon.authenticate(), function (req, res) {
+        var spaceKey =  req.query['spaceKey']
+        res.render('new-customer', {
+            spaceKey: spaceKey
+        });
+    });
+
     // Add any additional route handlers you need for views or REST resources here...
 
 

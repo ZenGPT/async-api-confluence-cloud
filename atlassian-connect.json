@@ -18,7 +18,8 @@
         "installed": "/installed"
     },
     "scopes": [
-        "READ"
+        "READ",
+        "WRITE"
     ],
     "modules": {
         "generalPages": [
@@ -43,6 +44,70 @@
                 "conditions": [{
                     "condition": "user_is_logged_in"
                 }]
+            },
+            {
+                "key": "customersViewer",
+                "location": "",
+                "name": {
+                    "value": "Customers View"
+                },
+                "url": "/view-customer?contentId={content.id}",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            },
+            {
+                "key": "customerList",
+                "location": "",
+                "name": {
+                    "value": "Customers List"
+                },
+                "url": "/list-customers",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            }
+        ],
+        "customContent": [
+            {
+              "key": "customer",
+              "name": {
+                "value": "Customers"
+              },
+              "uiSupport": {
+                "contentViewComponent": {
+                  "moduleKey": "customersViewer"
+                },
+                "listViewComponent": {
+                  "moduleKey": "customerList"
+                 },
+                "icons": {
+                  "item": {
+                    "url": "/images/customers.png"
+                  }
+                }
+              },
+              "apiSupport": {
+                "supportedContainerTypes": [
+                  "space"
+                ],
+                "indexing" : {
+                  "enabled" : true
+                }
+              }
+            }
+          ],
+        "dialogs": [
+            {
+              "url": "/add-new-customer?spaceKey={space.key}",
+              "options": {
+                "height": "420px",
+                "width": "600px",
+                "header": {
+                  "value": "Add a new customer"
+                }
+              },
+              "key": "newCustomer"
             }
         ]
     },

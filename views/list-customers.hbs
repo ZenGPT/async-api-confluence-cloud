@@ -1,0 +1,51 @@
+{{!< layout}}
+
+<div>Hey there from list</div>
+
+<button id="add-customer">Add a new Customer</button>
+
+<script>
+
+  function indexText(customer, args){
+    AP.request({
+      url: "/rest/api/content/" + customer.id + "/property",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        "key" : "ac:custom-content:search-body",
+        "value": args.metadata.properties['customer-data']['value']['description']
+      }),
+      success: function(response){
+        console.log("indexText success")
+      },
+      error: function(err){
+        console.log("indexText failed")
+      }
+    });
+  }
+
+  $('#add-customer').on('click', function(){
+    AP.dialog.create({
+      key: 'newCustomer',
+      chrome: false
+    })
+  });
+
+  AP.events.onPublic('customerDataEvent', function(args){
+    AP.request({
+        url: '/rest/api/content',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(args),
+        success: function(customer){
+            customer = JSON.parse(customer);
+            console.log("Customer successfully persisted to Confluence", customer);
+            indexText(customer, args)
+        },
+        error: function(err){
+            console.log("content error - ", err);
+        }
+    });
+  });
+
+</script>

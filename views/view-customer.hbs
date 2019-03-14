@@ -8,3 +8,50 @@
 <div>Company name: {{values.companyName}}</div>
 <div>Description: {{values.description}}</div>
 <div><a href="{{values.website}}">Website</a></div>
+
+<input type="button" value="Add a note" id="add-note">
+
+<h3>Notes</h3>
+<div id="notes">
+</div>
+
+<script>
+$('#add-note').on('click', function(){
+    AP.dialog.create({
+        key: 'newNote',
+        chrome: false
+    })
+});
+
+AP.events.onPublic('noteDataEvent', function(args){
+    AP.request({
+        url: '/rest/api/content',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(args),
+        success: function(note){
+            note = JSON.parse(note);
+            console.log("Note successfully persisted to Confluence", note);
+        },
+        error: function(err){
+            console.log("content error - ", err);
+        }
+    });
+});
+
+AP.request({
+    url: '/rest/api/content/' + "{{contentId}}" + '/child/ac:my-add-on:note?expand=body.storage',
+    type: 'GET',
+    contentType: 'application/json',
+    success: function(notes){
+        notes = JSON.parse(notes);
+        var notesValue = notes.results.map(function(r){ return r.body.storage.value})
+        notesValue.forEach(note => {
+            $("#notes").append("<ul>" + note + "</ul>")
+        });
+    },
+    error: function(err){
+        console.log("content error notes - ", err);
+    }
+});
+</script>

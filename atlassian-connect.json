@@ -91,11 +91,41 @@
                 "supportedContainerTypes": [
                   "space"
                 ],
+                "supportedChildTypes" : [
+                    "ac:my-add-on:note"
+                ],
                 "indexing" : {
                   "enabled" : true
                 }
               }
-            }
+            },
+            {
+                "key": "note",
+                "name": {
+                  "value": "Notes"
+                },
+                "uiSupport": {
+                  "contentViewComponent": {
+                    "moduleKey": "customersViewer"
+                  },
+                  "listViewComponent": {
+                    "moduleKey": "notesViewer"
+                   },
+                  "icons": {
+                    "item": {
+                      "url": "/images/notes.png"
+                    }
+                  }
+                },
+                "apiSupport": {
+                  "supportedContainerTypes": [
+                    "ac:my-add-on:customer"
+                  ],
+                  "indexing" : {
+                    "enabled" : true
+                  }
+                }
+              }
           ],
         "dialogs": [
             {
@@ -108,6 +138,17 @@
                 }
               },
               "key": "newCustomer"
+            },
+            {
+              "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
+              "options": {
+                "height": "420px",
+                "width": "600px",
+                "header": {
+                    "value": "Add a new note"
+                }
+              },
+              "key": "newNote"
             }
         ]
     },

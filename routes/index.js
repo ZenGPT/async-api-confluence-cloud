@@ -62,6 +62,15 @@ module.exports = function (app, addon) {
         });
     });
 
+    app.get('/add-new-note', addon.authenticate(), function (req, res) {
+        var contentId  = req.query['contentId'];
+        var spaceKey =  req.query['spaceKey']
+        res.render('new-note',{
+           contentId: contentId,
+           spaceKey: spaceKey 
+        });
+    });
+
     // Add any additional route handlers you need for views or REST resources here...
 
 

@@ -51,7 +51,10 @@ module.exports = function (app, addon) {
     );
 
     app.get('/list-customers', addon.authenticate(), function (req, res) {
-            res.render('list-customers');
+            var spaceKey =  req.query['spaceKey']
+            res.render('list-customers', {
+                spaceKey: spaceKey
+            });
         }
     );
 

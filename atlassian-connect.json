@@ -62,7 +62,7 @@
                 "name": {
                     "value": "Customers List"
                 },
-                "url": "/list-customers",
+                "url": "/list-customers?spaceKey={space.key}",
                 "conditions": [{
                     "condition": "user_is_logged_in"
                 }]

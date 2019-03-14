@@ -1,8 +1,17 @@
 {{!< layout}}
 
-<div>Hey there from list</div>
+<div>Customers list</div>
 
 <button id="add-customer">Add a new Customer</button>
+
+<div id="customers-list" style="margin-top: 50px;">
+		<div id="12" class="comapny">
+			<img src="" alt="Logo">
+			<div class="company-name">Tesla</div>
+			<div class="description">Desc of Tesla</div>
+			<div class="website">www.tesla.com</div>
+		</div>
+</div>
 
 <script>
 
@@ -47,5 +56,33 @@
         }
     });
   });
+
+	$(function(){
+		AP.request({
+				url: "/rest/api/content/" ,
+				data: {
+						"type": 'ac:my-add-on:customer',
+						"spaceKey": "{{spaceKey}}",
+						expand: "children"
+				},
+				success: function(response){
+					let customers = JSON.parse(response).results;
+          // For each customer, get their associated JSON data.
+          async.each(customers, (customer, cb) => {
+            request({
+              url: `/rest/api/content/${customer.id}/property/customer-data`,
+              success: (jsonData) => {
+								$("#customers-list").append('<div id="' + +'" class="company"><img src="' + jsonData.value.logo 
+									+ '" alt="Logo"><div class="company-name">' + jsonData.value.companyName + '</div><div class="description">' 
+									+ jsonData.value.description + '</div><div class="website">' + jsonData.value.website+ '</div></div>')
+              }
+            });
+          }
+				},
+				error: function(err){
+					console.log("err - ", error)
+				}
+		});
+	})
 
 </script>

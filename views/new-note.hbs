@@ -16,12 +16,12 @@
 $(function(){
     $("#dialog-submit-button").on("click", function(){
       var jsonData = {
-          "type": "ac:my-add-on:note",
+          "type": "ac:my-app:note",
           "space": {
               "key": "{{spaceKey}}"
           },
           "container": {
-            "type": "ac:my-add-on:customer",
+            "type": "ac:my-app:customer",
             "id": "{{contentId}}"
           },
           "title": " ",

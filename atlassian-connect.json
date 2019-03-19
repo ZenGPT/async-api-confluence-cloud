@@ -92,7 +92,7 @@
                   "space"
                 ],
                 "supportedChildTypes" : [
-                    "ac:my-add-on:note"
+                    "ac:my-app:note"
                 ],
                 "indexing" : {
                   "enabled" : true
@@ -119,7 +119,7 @@
                 },
                 "apiSupport": {
                   "supportedContainerTypes": [
-                    "ac:my-add-on:customer"
+                    "ac:my-app:customer"
                   ]
                 }
               }

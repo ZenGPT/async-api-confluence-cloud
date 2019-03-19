@@ -1,7 +1,7 @@
 {
     "key": "my-app",
     "name": "My app",
-    "description": "My very first add-on",
+    "description": "My very first app",
     "vendor": {
         "name": "Angry Nerds",
         "url": "https://www.atlassian.com/angrynerds"

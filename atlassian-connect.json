@@ -1,6 +1,6 @@
 {
-    "key": "my-add-on",
-    "name": "Ping Pong",
+    "key": "my-app",
+    "name": "My app",
     "description": "My very first add-on",
     "vendor": {
         "name": "Angry Nerds",

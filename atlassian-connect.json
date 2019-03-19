@@ -120,10 +120,7 @@
                 "apiSupport": {
                   "supportedContainerTypes": [
                     "ac:my-add-on:customer"
-                  ],
-                  "indexing" : {
-                    "enabled" : true
-                  }
+                  ]
                 }
               }
           ],

@@ -6,7 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "atlassian-connect-express": "^3.0.2",
+    "atlassian-connect-express": "^6.5.0",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
@@ -16,5 +16,9 @@
     "morgan": "^1.6.1",
     "sequelize": "^4.38.0",
     "static-expiry": ">=0.0.5"
+  },
+  "devDependencies": {
+    "ngrok": "^3.3.0",
+    "sqlite3": "^5.0.2"
   }
 }

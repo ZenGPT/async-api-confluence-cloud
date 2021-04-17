@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of customers</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/5.8.12/js/aui-soy.js" type="text/javascript"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/5.8.12/js/aui.js" type="text/javascript"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/5.8.12/js/aui-datepicker.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/5.8.12/js/aui-experimental.js"></script>
+    <script src="https://connect-cdn.atl-paas.net/all.js" type="text/javascript"></script>
+</head>
+<body>
+<div>Customers list</div>
+
+<button id="add-customer">Add a new Customer</button>
+
+<div id="customers-list" style="margin-top: 50px;">
+    <div id="12" class="comapny">
+        <div class="company-name">Tesla</div>
+        <div class="description">Desc of Tesla</div>
+        <div class="website">www.tesla.com</div>
+    </div>
+</div>
+
+<script>
+
+  function indexText(customer, args) {
+    AP.request({
+      url: "/rest/api/content/" + customer.id + "/property",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        "key": "ac:custom-content:search-body",
+        "value": args.metadata.properties['customer-data']['value']['description']
+      }),
+      success: function (response) {
+        console.log("indexText success")
+      },
+      error: function (err) {
+        console.log("indexText failed")
+      }
+    });
+  }
+
+  console.log('Installing click event listener...')
+  $('#add-customer').on('click', function () {
+    console.log('#add-customer click event listener triggered...')
+    AP.dialog.create({
+      key: 'newCustomer',
+      chrome: false
+    })
+  });
+  console.log('Installing customer data event listener...')
+  AP.events.onPublic('customerDataEvent', function (args) {
+    console.log('on public event: customerDataEvent...')
+
+    AP.request({
+      url: '/rest/api/content',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(args),
+      success: function (customer) {
+        customer = JSON.parse(customer);
+        console.log("Customer successfully persisted to Confluence", customer);
+        indexText(customer, args)
+      },
+      error: function (err) {
+        console.log("content error - ", err);
+      }
+    });
+  });
+
+  $(function () {
+    AP.request({
+      url: "/rest/api/content/",
+      data: {
+        "type": 'ac:my-app:customer',
+        "spaceKey": "ZS",
+        "expand": "children"
+      },
+      success: function (response) {
+        let customers = JSON.parse(response).results;
+        customers.forEach(customer => {
+          AP.request({
+            url: `/rest/api/content/${customer.id}/property/customer-data`,
+            success: (jsonData) => {
+              jsonData = JSON.parse(jsonData);
+              $("#customers-list").append(jsonData.value.companyName)
+            }
+          });
+        });
+      },
+      error: function (err) {
+        console.log("err - ", err)
+      }
+    });
+  })
+
+</script>
+</body>
+</html>

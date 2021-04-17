@@ -61,32 +61,32 @@
         });
     });
 
-	$(function(){
-		AP.request({
-				url: "/rest/api/content/" ,
-				data: {
-						"type": 'ac:my-app:customer',
-						"spaceKey": "{{spaceKey}}",
-						"expand": "children"
-				},
-				success: function(response){
-          let customers = JSON.parse(response).results;
-          customers.forEach(customer => {
-            AP.request({
-              url: `/rest/api/content/${customer.id}/property/customer-data`,
-              success: (jsonData) => {
-                jsonData = JSON.parse(jsonData)
-								$("#customers-list").append('<div id="' + jsonData.id +'" class="company"><img src="' + jsonData.value.logo 
-									+ '" alt="Logo"><div class="company-name">' + jsonData.value.companyName + '</div><div class="description">' 
-									+ jsonData.value.description + '</div><div class="website">' + jsonData.value.website+ '</div></div>')
-              }
-            });
-          });
-				},
-				error: function(err){
-					console.log("err - ", error)
-				}
-		});
-	})
+    $(function () {
+        AP.request({
+            url: "/rest/api/content/",
+            data: {
+                "type": 'ac:my-app:customer',
+                "spaceKey": "{{spaceKey}}",
+                "expand": "children"
+            },
+            success: function (response) {
+                let customers = JSON.parse(response).results;
+                customers.forEach(customer => {
+                    AP.request({
+                        url: `/rest/api/content/${customer.id}/property/customer-data`,
+                        success: (jsonData) => {
+                            jsonData = JSON.parse(jsonData);
+                            $("#customers-list").append('<div id="' + jsonData.id + '" class="company"><img src="' + jsonData.value.logo
+                                    + '" alt="Logo"><div class="company-name">' + jsonData.value.companyName + '</div><div class="description">'
+                                    + jsonData.value.description + '</div><div class="website">' + jsonData.value.website + '</div></div>')
+                        }
+                    });
+                });
+            },
+            error: function (err) {
+                console.log("err - ", error)
+            }
+        });
+    })
 
 </script>

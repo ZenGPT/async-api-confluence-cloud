@@ -61,37 +61,6 @@
         });
     });
 
-<<<<<<< HEAD
-    $(function () {
-        console.log('Installing click event listener...')
-
-        AP.request({
-            url: "/rest/api/content/",
-            data: {
-                "type": 'ac:my-app:customer',
-                "spaceKey": "{{spaceKey}}",
-                expand: "children"
-            },
-            success: function (response) {
-                let customers = JSON.parse(response).results;
-                // For each customer, get their associated JSON data.
-                async.each(customers, (customer, cb) => {
-                    request({
-                        url: `/rest/api/content/${customer.id}/property/customer-data`,
-                        success: (jsonData) => {
-                            $("#customers-list").append('<div id="' + +'" class="company"><img src="' + jsonData.value.logo
-                                    + '" alt="Logo"><div class="company-name">' + jsonData.value.companyName + '</div><div class="description">'
-                                    + jsonData.value.description + '</div><div class="website">' + jsonData.value.website + '</div></div>')
-                        }
-                    });
-                })
-            },
-            error: function (err) {
-                console.log("err - ", error)
-            }
-        });
-    })
-=======
 	$(function(){
 		AP.request({
 				url: "/rest/api/content/" ,
@@ -119,6 +88,5 @@
 				}
 		});
 	})
->>>>>>> code fix
 
 </script>

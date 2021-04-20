@@ -1,7 +1,7 @@
 {
-  "key": "my-app",
-  "name": "My app",
-  "description": "My very first app1",
+  "key": "my-api",
+  "name": "Async API",
+  "description": "My very first app",
   "vendor": {
     "name": "Angry Nerds",
     "url": "https://www.atlassian.com/angrynerds"
@@ -101,7 +101,7 @@
             "space"
           ],
           "supportedChildTypes": [
-            "ac:my-app:note"
+            "ac:my-api:note"
           ],
           "indexing": {
             "enabled": true
@@ -128,7 +128,7 @@
         },
         "apiSupport": {
           "supportedContainerTypes": [
-            "ac:my-app:customer"
+            "ac:my-api:customer"
           ]
         }
       }

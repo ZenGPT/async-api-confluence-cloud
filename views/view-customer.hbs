@@ -40,7 +40,7 @@ AP.events.onPublic('noteDataEvent', function(args){
 });
 
 AP.request({
-    url: '/rest/api/content/' + "{{contentId}}" + '/child/ac:my-app:note?expand=body.storage',
+    url: '/rest/api/content/' + "{{contentId}}" + '/child/ac:my-api:note?expand=body.storage',
     type: 'GET',
     contentType: 'application/json',
     success: function(notes){

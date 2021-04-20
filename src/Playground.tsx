@@ -47,7 +47,7 @@ class Playground extends Component<{}, State> {
       "title": "A new Async API Doc",
       "body": {
         "raw": {
-          "value": "ABCD",
+          "value": JSON.stringify({"schema": this.state.schema, "config": this.state.config}),
           "representation": "raw"
         }
       }

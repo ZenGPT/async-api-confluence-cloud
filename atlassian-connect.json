@@ -1,7 +1,7 @@
 {
     "key": "my-app",
     "name": "My app",
-    "description": "My very first app",
+    "description": "My very first app1",
     "vendor": {
         "name": "Angry Nerds",
         "url": "https://www.atlassian.com/angrynerds"
@@ -88,6 +88,7 @@
                 }
               },
               "apiSupport": {
+                "bodyType": "raw",
                 "supportedContainerTypes": [
                   "space"
                 ],

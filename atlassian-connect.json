@@ -1,156 +1,164 @@
 {
-    "key": "my-app",
-    "name": "My app",
-    "description": "My very first app1",
-    "vendor": {
-        "name": "Angry Nerds",
-        "url": "https://www.atlassian.com/angrynerds"
-    },
-    "baseUrl": "{{localBaseUrl}}",
-    "links": {
-        "self": "{{localBaseUrl}}/atlassian-connect.json",
-        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
-    },
-    "authentication": {
-        "type": "jwt"
-    },
-    "lifecycle": {
-        "installed": "/installed"
-    },
-    "scopes": [
-        "READ",
-        "WRITE"
-    ],
-    "modules": {
-        "generalPages": [
-            {
-                "key": "hello-world-page-jira",
-                "location": "system.top.navigation.bar",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "hello-world-page-confluence",
-                "location": "system.header/left",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "customersViewer",
-                "location": "",
-                "name": {
-                    "value": "Customers View"
-                },
-                "url": "/view-customer?contentId={content.id}",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "customerList",
-                "location": "",
-                "name": {
-                    "value": "Customers List"
-                },
-                "url": "/list-customers.html?spaceKey={space.key}",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            }
-        ],
-        "customContent": [
-            {
-              "key": "customer",
-              "name": {
-                "value": "Customers"
-              },
-              "uiSupport": {
-                "contentViewComponent": {
-                  "moduleKey": "customersViewer"
-                },
-                "listViewComponent": {
-                  "moduleKey": "customerList"
-                 },
-                "icons": {
-                  "item": {
-                    "url": "/images/customers.png"
-                  }
-                }
-              },
-              "apiSupport": {
-                "bodyType": "raw",
-                "supportedContainerTypes": [
-                  "space"
-                ],
-                "supportedChildTypes" : [
-                    "ac:my-app:note"
-                ],
-                "indexing" : {
-                  "enabled" : true
-                }
-              }
-            },
-            {
-                "key": "note",
-                "name": {
-                  "value": "Notes"
-                },
-                "uiSupport": {
-                  "contentViewComponent": {
-                    "moduleKey": "customersViewer"
-                  },
-                  "listViewComponent": {
-                    "moduleKey": "notesViewer"
-                   },
-                  "icons": {
-                    "item": {
-                      "url": "/images/notes.png"
-                    }
-                  }
-                },
-                "apiSupport": {
-                  "supportedContainerTypes": [
-                    "ac:my-app:customer"
-                  ]
-                }
-              }
-          ],
-        "dialogs": [
-            {
-              "url": "/add-new-customer?spaceKey={space.key}",
-              "options": {
-                "height": "100%",
-                "width": "100%",
-                "header": {
-                  "value": "Add a new customer"
-                }
-              },
-              "key": "newCustomer"
-            },
-            {
-              "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
-              "options": {
-                "height": "420px",
-                "width": "600px",
-                "header": {
-                    "value": "Add a new note"
-                }
-              },
-              "key": "newNote"
-            }
+  "key": "my-app",
+  "name": "My app",
+  "description": "My very first app1",
+  "vendor": {
+    "name": "Angry Nerds",
+    "url": "https://www.atlassian.com/angrynerds"
+  },
+  "baseUrl": "{{localBaseUrl}}",
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "scopes": [
+    "READ",
+    "WRITE"
+  ],
+  "modules": {
+    "generalPages": [
+      {
+        "key": "hello-world-page-jira",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/hello-world",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
         ]
-    },
-    "apiMigrations": {
-        "gdpr": true
-    }
+      },
+      {
+        "key": "hello-world-page-confluence",
+        "location": "system.header/left",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/hello-world",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      },
+      {
+        "key": "customersViewer",
+        "location": "",
+        "name": {
+          "value": "Customers View"
+        },
+        "url": "/view-customer?contentId={content.id}",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      },
+      {
+        "key": "customerList",
+        "location": "",
+        "name": {
+          "value": "Customers List"
+        },
+        "url": "/list-customers.html?spaceKey={space.key}",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      }
+    ],
+    "customContent": [
+      {
+        "key": "customer",
+        "name": {
+          "value": "Customers"
+        },
+        "uiSupport": {
+          "contentViewComponent": {
+            "moduleKey": "customersViewer"
+          },
+          "listViewComponent": {
+            "moduleKey": "customerList"
+          },
+          "icons": {
+            "item": {
+              "url": "/images/customers.png"
+            }
+          }
+        },
+        "apiSupport": {
+          "bodyType": "raw",
+          "supportedContainerTypes": [
+            "space"
+          ],
+          "supportedChildTypes": [
+            "ac:my-app:note"
+          ],
+          "indexing": {
+            "enabled": true
+          }
+        }
+      },
+      {
+        "key": "note",
+        "name": {
+          "value": "Notes"
+        },
+        "uiSupport": {
+          "contentViewComponent": {
+            "moduleKey": "customersViewer"
+          },
+          "listViewComponent": {
+            "moduleKey": "notesViewer"
+          },
+          "icons": {
+            "item": {
+              "url": "/images/notes.png"
+            }
+          }
+        },
+        "apiSupport": {
+          "supportedContainerTypes": [
+            "ac:my-app:customer"
+          ]
+        }
+      }
+    ],
+    "dialogs": [
+      {
+        "url": "/add-new-customer?spaceKey={space.key}",
+        "options": {
+          "height": "100%",
+          "width": "100%",
+          "header": {
+            "value": "Add a new customer"
+          }
+        },
+        "key": "newCustomer"
+      },
+      {
+        "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
+        "options": {
+          "height": "420px",
+          "width": "600px",
+          "header": {
+            "value": "Add a new note"
+          }
+        },
+        "key": "newNote"
+      }
+    ]
+  },
+  "apiMigrations": {
+    "gdpr": true
+  }
 }

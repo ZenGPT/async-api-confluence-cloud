@@ -5,6 +5,7 @@
   "homepage": "https://async-api.github.io",
   "dependencies": {
     "@asyncapi/react-component": "^0.22.4",
+    "@atlaskit/button": "^15.1.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-brands-svg-icons": "^5.10.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
@@ -14,7 +15,7 @@
     "react": "^16.9.0",
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.9.0",
-    "styled-components": "^4.3.2",
+    "styled-components": "^3.4.10",
     "atlassian-connect-express": "^6.5.0",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",

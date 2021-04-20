@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from "@atlaskit/button";
 import IconComponent from './Icon';
 
 import Icon from '../common/icons';
@@ -57,6 +58,7 @@ const NavigationComponent: React.StatelessComponent = () => {
           <IconComponent {...icon} key={icon.key} />
         ))}
       </NavigationLinks>
+      <Button appearance={'primary'} style={{marginTop: '6px'}}> &lt; Save and Go Back</Button>
     </NavigationWrapper>
   );
 };

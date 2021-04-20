@@ -30,10 +30,10 @@ class Playground extends Component<{}, State> {
   updateSchemaFn: (value: string) => void;
   updateConfigFn: (value: string) => void;
   saveConfig = () => {
-    console.log('Save config.')
+    console.log('Save config.', this.state.config)
   }
   saveSchema = () => {
-    console.log('Save schema.')
+    console.log('Save schema.', this.state.schema)
   }
 
   saveAndClose = () => {

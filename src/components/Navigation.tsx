@@ -18,7 +18,7 @@ interface IconData extends Icon {
   key: string;
 }
 
-const NavigationComponent: React.StatelessComponent = () => {
+function NavigationComponent (props: any):any {
   const iconsData: IconData[] = [
     {
       key: 'github',
@@ -39,10 +39,6 @@ const NavigationComponent: React.StatelessComponent = () => {
     },
   ];
 
-  function saveAndClose() {
-    console.log('Save and close the dialog.')
-  }
-
   return (
     <NavigationWrapper>
       <NavigationHeader>
@@ -62,10 +58,10 @@ const NavigationComponent: React.StatelessComponent = () => {
           <IconComponent {...icon} key={icon.key} />
         ))}
       </NavigationLinks>
-      <Button onClick={saveAndClose}
+      <Button onClick={props.saveAndClose}
           appearance={'primary'} style={{marginTop: '6px'}}> &lt; Save and Go Back</Button>
     </NavigationWrapper>
   );
-};
+}
 
 export default NavigationComponent;

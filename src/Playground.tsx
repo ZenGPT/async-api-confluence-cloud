@@ -29,6 +29,18 @@ interface State {
 class Playground extends Component<{}, State> {
   updateSchemaFn: (value: string) => void;
   updateConfigFn: (value: string) => void;
+  saveConfig = () => {
+    console.log('Save config.')
+  }
+  saveSchema = () => {
+    console.log('Save schema.')
+  }
+
+  saveAndClose = () => {
+    this.saveConfig();
+    this.saveSchema();
+    console.log('Close dialog.')
+  }
 
   state = {
     schema: defaultSchema,
@@ -59,7 +71,7 @@ class Playground extends Component<{}, State> {
 
     return (
       <PlaygroundWrapper>
-        <Navigation />
+        <Navigation saveAndClose={this.saveAndClose}/>
         <SplitWrapper>
           <CodeEditorsWrapper>
             <Tabs

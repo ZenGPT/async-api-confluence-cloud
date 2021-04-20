@@ -4,6 +4,7 @@
 // [Express](http://expressjs.com/) is your friend -- it's the underlying
 // web framework that `atlassian-connect-express` uses
 var express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var cookieParser = require('cookie-parser');
@@ -61,6 +62,7 @@ app.use(addon.middleware());
 app.use(expiry(app, {dir: staticDir, debug: devEnv}));
 // Add an hbs helper to fingerprint static resource urls
 hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
+app.use('/', createProxyMiddleware(['!/atlassian-connect.json', '!/installed'], { target: 'http://localhost:3000', changeOrigin: true, logLevel: "debug" }));
 // Mount the static resource dir
 app.use(express.static(staticDir));
 

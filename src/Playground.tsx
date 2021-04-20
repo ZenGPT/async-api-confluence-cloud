@@ -39,6 +39,35 @@ class Playground extends Component<{}, State> {
   saveAndClose = () => {
     this.saveConfig();
     this.saveSchema();
+    const jsonData = {
+      "type": "ac:my-app:customer",
+      "space": {
+        "key": "ZS"
+      },
+      "title": "A new Async API Doc",
+      "body": {
+        "raw": {
+          "value": "ABCD",
+          "representation": "raw"
+        }
+      }
+    }
+    // @ts-ignore
+    if(!AP) {
+      console.log('AP not available. Existing...');
+      return;
+    }
+    // @ts-ignore
+    AP.request({
+      url: '/rest/api/content',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(jsonData),
+      success: function (asyncApi: any) {
+        const response = JSON.parse(asyncApi);
+        console.log('Async API doc successfully persisted to Confluence', response);
+      }
+    });
     console.log('Close dialog.')
   }
 

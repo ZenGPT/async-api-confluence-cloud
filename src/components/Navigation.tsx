@@ -39,6 +39,10 @@ const NavigationComponent: React.StatelessComponent = () => {
     },
   ];
 
+  function saveAndClose() {
+    console.log('Save and close the dialog.')
+  }
+
   return (
     <NavigationWrapper>
       <NavigationHeader>
@@ -58,7 +62,8 @@ const NavigationComponent: React.StatelessComponent = () => {
           <IconComponent {...icon} key={icon.key} />
         ))}
       </NavigationLinks>
-      <Button appearance={'primary'} style={{marginTop: '6px'}}> &lt; Save and Go Back</Button>
+      <Button onClick={saveAndClose}
+          appearance={'primary'} style={{marginTop: '6px'}}> &lt; Save and Go Back</Button>
     </NavigationWrapper>
   );
 };

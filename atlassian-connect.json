@@ -63,12 +63,12 @@
         ]
       },
       {
-        "key": "customerList",
+        "key": "api-doc-list",
         "location": "",
         "name": {
-          "value": "Customers List"
+          "value": "My API Documents"
         },
-        "url": "/list-customers.html?spaceKey={space.key}",
+        "url": "/list?spaceKey={space.key}",
         "conditions": [
           {
             "condition": "user_is_logged_in"
@@ -87,7 +87,7 @@
             "moduleKey": "customersViewer"
           },
           "listViewComponent": {
-            "moduleKey": "customerList"
+            "moduleKey": "api-doc-list"
           },
           "icons": {
             "item": {

@@ -22,6 +22,9 @@ function App() {
                 <Route path="/view">
                     <div>View</div>
                 </Route>
+                <Route path="/list">
+                    <div>ListOfApiDocs</div>
+                </Route>
                 <Route path="/">
                     <div>Home</div>
                 </Route>

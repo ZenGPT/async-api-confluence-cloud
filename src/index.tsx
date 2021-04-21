@@ -11,6 +11,7 @@ import Playground from './Playground';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '@asyncapi/react-component/lib/styles/fiori.css';
 import './common/icons';
+import ListOfApiDocs from "./ListOfApiDocs";
 
 function App() {
     return (
@@ -23,7 +24,7 @@ function App() {
                     <div>View</div>
                 </Route>
                 <Route path="/list">
-                    <div>ListOfApiDocs</div>
+                    <ListOfApiDocs/>
                 </Route>
                 <Route path="/">
                     <div>Home</div>

@@ -40,7 +40,7 @@ class Playground extends Component<{}, State> {
     this.saveConfig();
     this.saveSchema();
     const jsonData = {
-      "type": "ac:my-api:customer",
+      "type": "ac:my-api:async-api-doc",
       "space": {
         "key": "ZS"
       },

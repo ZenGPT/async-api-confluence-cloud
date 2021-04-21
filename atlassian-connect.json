@@ -78,9 +78,9 @@
     ],
     "customContent": [
       {
-        "key": "customer",
+        "key": "async-api-doc",
         "name": {
-          "value": "Customers"
+          "value": "My API Documents"
         },
         "uiSupport": {
           "contentViewComponent": {
@@ -128,7 +128,7 @@
         },
         "apiSupport": {
           "supportedContainerTypes": [
-            "ac:my-api:customer"
+            "ac:my-api:async-api-doc"
           ]
         }
       }

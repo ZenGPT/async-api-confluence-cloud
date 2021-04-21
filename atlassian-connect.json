@@ -135,12 +135,12 @@
     ],
     "dialogs": [
       {
-        "url": "/add-new-customer?spaceKey={space.key}",
+        "url": "/create?spaceKey={space.key}",
         "options": {
           "height": "100%",
           "width": "100%",
           "header": {
-            "value": "Add a new customer"
+            "value": "Create a new API Document"
           }
         },
         "key": "newCustomer"

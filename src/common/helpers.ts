@@ -33,7 +33,7 @@ export const fetchSchema = async (link: string): Promise<any> => {
 function handleResponse(response: any) {
   return response.text().then((data: string) => data);
 }
-
+// eslint-disable-next-line
 export function debounce<T>(
   func: (...args: any[]) => void,
   wait: number,

@@ -55,7 +55,7 @@
         "name": {
           "value": "Customers View"
         },
-        "url": "/view-customer?contentId={content.id}",
+        "url": "/view?contentId={content.id}",
         "conditions": [
           {
             "condition": "user_is_logged_in"

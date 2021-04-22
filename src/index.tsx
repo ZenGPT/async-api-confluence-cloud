@@ -12,6 +12,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import '@asyncapi/react-component/lib/styles/fiori.css';
 import './common/icons';
 import ListOfApiDocs from "./ListOfApiDocs";
+import Viewer from "./Viewer";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                     <Playground/>
                 </Route>
                 <Route path="/view">
-                    <div>Viewer</div>
+                    <Viewer/>
                 </Route>
                 <Route path="/edit">
                     <div>Edit</div>

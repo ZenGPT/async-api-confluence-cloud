@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-
-export default function ListOfApiDocs() {
-  const [apiDocsList, setApiDocsList] = useState('empty');
+interface ApiDocWrapper {
+  id: string;
+}
+export default function ListOfApiDocs(this: any) {
+  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([{id: "1234"}]);
 
   useEffect(() => {
     console.log('use effect');
@@ -24,7 +26,13 @@ export default function ListOfApiDocs() {
       }
     })
   }, []);
+  const docs = apiDocsList.map((doc) => {
+    return (<div key={doc.id}>{doc.id}</div>)
+  });
   return (
-    <div>List of API Docs: {JSON.stringify(apiDocsList)}</div>
+    <>
+      <div>List of API Docs:</div>
+      {docs}
+    </>
   );
 }

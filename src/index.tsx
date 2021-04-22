@@ -21,7 +21,10 @@ function App() {
                     <Playground/>
                 </Route>
                 <Route path="/view">
-                    <div>View</div>
+                    <div>Viewer</div>
+                </Route>
+                <Route path="/edit">
+                    <div>Edit</div>
                 </Route>
                 <Route path="/list">
                     <ListOfApiDocs/>

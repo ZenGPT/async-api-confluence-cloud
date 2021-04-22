@@ -1,9 +1,19 @@
 import React, {useEffect, useState} from 'react';
 interface ApiDocWrapper {
+  _links: {
+    self: string;
+    webui: string;
+  };
   id: string;
 }
 export default function ListOfApiDocs(this: any) {
-  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([{id: "1234"}]);
+  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([{
+    id: "1234",
+    _links: {
+      webui: "a web link",
+      self: "https://zenuml-stg.atlassian.net"
+    }
+  }]);
 
   useEffect(() => {
     console.log('use effect');
@@ -27,7 +37,8 @@ export default function ListOfApiDocs(this: any) {
     })
   }, []);
   const docs = apiDocsList.map((doc) => {
-    return (<div key={doc.id}>{doc.id}</div>)
+    const selfUrl = new URL(doc._links.self);
+    return (<div key={doc.id}>{doc.id} webui: {selfUrl.protocol}//{selfUrl.host}/wiki{doc._links.webui}</div>)
   });
   return (
     <>

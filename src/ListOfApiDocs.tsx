@@ -41,15 +41,17 @@ export default function ListOfApiDocs(this: any) {
     const selfUrl = new URL(doc._links.self);
     const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
     return (
-      <div key={doc.id}>
+      <li key={doc.id}>
         <ApiDocItem id={doc.id} link={apiDocDisplayUrl}/>
-      </div>
+      </li>
     )
   });
   return (
     <>
       <div>List of API Docs:</div>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
       {docs}
+      </ul>
     </>
   );
 }

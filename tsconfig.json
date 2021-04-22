@@ -3,8 +3,16 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/*.ts", "src/**/*.ts", "src/*.tsx", "src/**/*.tsx"],
-  "exclude": ["build/**/*"]
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "src/*.tsx",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "build/**/*"
+  ]
 }

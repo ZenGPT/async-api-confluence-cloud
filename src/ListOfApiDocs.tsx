@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import ApiDocItem from './components/ApiDocItem';
 interface ApiDocWrapper {
   _links: {
     self: string;
@@ -38,7 +39,12 @@ export default function ListOfApiDocs(this: any) {
   }, []);
   const docs = apiDocsList.map((doc) => {
     const selfUrl = new URL(doc._links.self);
-    return (<div key={doc.id}>{doc.id} webui: {selfUrl.protocol}//{selfUrl.host}/wiki{doc._links.webui}</div>)
+    const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
+    return (
+      <div key={doc.id}>
+        <ApiDocItem id={doc.id} link={apiDocDisplayUrl}/>
+      </div>
+    )
   });
   return (
     <>

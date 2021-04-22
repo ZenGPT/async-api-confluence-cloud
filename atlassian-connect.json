@@ -50,10 +50,10 @@
         ]
       },
       {
-        "key": "customersViewer",
+        "key": "my-api-viewer",
         "location": "",
         "name": {
-          "value": "Customers View"
+          "value": "My API Doc"
         },
         "url": "/view?contentId={content.id}",
         "conditions": [
@@ -84,7 +84,7 @@
         },
         "uiSupport": {
           "contentViewComponent": {
-            "moduleKey": "customersViewer"
+            "moduleKey": "my-api-viewer"
           },
           "listViewComponent": {
             "moduleKey": "api-doc-list"
@@ -115,7 +115,7 @@
         },
         "uiSupport": {
           "contentViewComponent": {
-            "moduleKey": "customersViewer"
+            "moduleKey": "my-api-viewer"
           },
           "listViewComponent": {
             "moduleKey": "notesViewer"

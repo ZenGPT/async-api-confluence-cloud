@@ -15,6 +15,7 @@ import {
 } from './components';
 
 import { defaultConfig, parse, debounce } from './common';
+import yaml from 'js-yaml';
 import * as specs from './specs';
 
 const defaultSchema = specs.streetlights;
@@ -39,12 +40,14 @@ class Playground extends Component<{}, State> {
   saveAndClose = () => {
     this.saveConfig();
     this.saveSchema();
+    const apiSchemaJson = yaml.load(this.state.schema);
+    console.log('!!!!!!api schema doc', apiSchemaJson);
     const jsonData = {
       "type": "ac:my-api:async-api-doc",
       "space": {
         "key": "ZS"
       },
-      "title": "A new Async API Doc",
+      "title": apiSchemaJson.info?.title || 'Untitled',
       "body": {
         "raw": {
           "value": JSON.stringify({"schema": this.state.schema, "config": this.state.config}),

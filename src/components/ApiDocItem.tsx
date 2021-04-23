@@ -44,9 +44,9 @@ export default function ApiDocItem(props: ApiDocSummary) {
             </dd>
           </div>
           <div>
-            <dt className="sr-only">Category</dt>
+            <dt className="sr-only">ID</dt>
             <dd className="group-hover:text-light-blue-200 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
-              category
+              ID {apiDocSumary.id}
             </dd>
           </div>
           <div className="col-start-2 row-start-1 row-end-3">

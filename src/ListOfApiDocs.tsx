@@ -46,7 +46,9 @@ export default function ListOfApiDocs(this: any) {
     loadApiDocList();
     localAp.events.onPublic('API_DOC_CREATED', loadApiDocList);
   }, []);
-  const docs = apiDocsList.map((doc) => {
+  const docs = apiDocsList
+    .sort((doc1, doc2) => Number(doc2.id) - Number(doc1.id))
+    .map((doc) => {
     const selfUrl = new URL(doc._links.self);
     const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
     return (

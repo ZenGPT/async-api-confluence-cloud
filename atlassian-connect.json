@@ -143,7 +143,7 @@
             "value": "Create a new API Document"
           }
         },
-        "key": "newCustomer"
+        "key": "newApiDoc"
       },
       {
         "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",

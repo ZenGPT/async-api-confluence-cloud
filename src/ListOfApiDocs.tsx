@@ -48,11 +48,21 @@ export default function ListOfApiDocs(this: any) {
       </li>
     )
   });
+
+  function createApiDoc() {
+    // @ts-ignore
+    AP.dialog.create({
+      key: 'newApiDoc',
+      chrome: false
+    });
+  }
+
   return (
     <>
       <div>List of API Docs:</div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
       {docs}
+      <li onClick={createApiDoc}>+ New Async API Doc</li>
       </ul>
     </>
   );

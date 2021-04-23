@@ -19,7 +19,8 @@ export default function ListOfApiDocs(this: any) {
   useEffect(() => {
     console.log('use effect');
     // @ts-ignore
-    AP.request({
+    const localAp = AP;
+    localAp.request({
 
       url: "/rest/api/content/",
       data: {
@@ -31,6 +32,7 @@ export default function ListOfApiDocs(this: any) {
         let customers = JSON.parse(response).results;
         console.log(customers);
         setApiDocsList(customers);
+        localAp.resize();
       },
       error: function (err: any) {
         console.log("err - ", err)

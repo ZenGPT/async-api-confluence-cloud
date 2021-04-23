@@ -16,12 +16,10 @@ export default function ListOfApiDocs(this: any) {
     }
   }]);
 
-  useEffect(() => {
-    console.log('use effect');
+  function loadApiDocList() {
     // @ts-ignore
     const localAp = AP;
     localAp.request({
-
       url: "/rest/api/content/",
       data: {
         "type": 'ac:my-api:async-api-doc',
@@ -37,7 +35,16 @@ export default function ListOfApiDocs(this: any) {
       error: function (err: any) {
         console.log("err - ", err)
       }
-    })
+    });
+  }
+
+// Load list of API Docs
+  useEffect(() => {
+    console.log('use effect');
+    // @ts-ignore
+    const localAp = AP;
+    loadApiDocList();
+    localAp.events.onPublic('API_DOC_CREATED', loadApiDocList);
   }, []);
   const docs = apiDocsList.map((doc) => {
     const selfUrl = new URL(doc._links.self);

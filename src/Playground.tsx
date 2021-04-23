@@ -53,12 +53,13 @@ class Playground extends Component<{}, State> {
       }
     }
     // @ts-ignore
-    if(!AP) {
+    let localAp = AP;
+    if(!localAp) {
       console.log('AP not available. Existing...');
       return;
     }
-    // @ts-ignore
-    AP.request({
+
+    localAp.request({
       url: '/rest/api/content',
       type: 'POST',
       contentType: 'application/json',
@@ -66,9 +67,11 @@ class Playground extends Component<{}, State> {
       success: function (asyncApi: any) {
         const response = JSON.parse(asyncApi);
         console.log('Async API doc successfully persisted to Confluence', response);
+        console.log('Close dialog.')
+        localAp.events.emitPublic('API_DOC_CREATED', jsonData);
+        localAp.dialog.close();
       }
     });
-    console.log('Close dialog.')
   }
 
   state = {

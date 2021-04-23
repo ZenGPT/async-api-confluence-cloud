@@ -40,14 +40,14 @@ class Playground extends Component<{}, State> {
   saveAndClose = () => {
     this.saveConfig();
     this.saveSchema();
-    const apiSchemaJson = yaml.load(this.state.schema);
+    const apiSchemaJson: any = yaml.load(this.state.schema);
     console.log('!!!!!!api schema doc', apiSchemaJson);
     const jsonData = {
       "type": "ac:my-api:async-api-doc",
       "space": {
         "key": "ZS"
       },
-      "title": apiSchemaJson.info?.title || 'Untitled',
+      "title": apiSchemaJson?.info?.title || 'Untitled',
       "body": {
         "raw": {
           "value": JSON.stringify({"schema": this.state.schema, "config": this.state.config}),

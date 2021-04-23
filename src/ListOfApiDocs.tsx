@@ -51,7 +51,7 @@ export default function ListOfApiDocs(this: any) {
     const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
     return (
       <li key={doc.id}>
-        <ApiDocItem id={doc.id} link={apiDocDisplayUrl}/>
+        <ApiDocItem id={doc.id} link={apiDocDisplayUrl} title={'Untitled'}/>
       </li>
     )
   });
@@ -68,8 +68,13 @@ export default function ListOfApiDocs(this: any) {
     <>
       <div>List of API Docs:</div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-      {docs}
-      <li onClick={createApiDoc}>+ New Async API Doc</li>
+        <li className="hover:shadow-lg flex rounded-lg">
+          <a href="/" onClick={createApiDoc}
+             className="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
+            New Async API Doc
+          </a>
+        </li>
+        {docs}
       </ul>
     </>
   );

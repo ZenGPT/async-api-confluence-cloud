@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import AsyncApi from "@asyncapi/react-component";
 import {AsyncApiWrapper} from "./components";
+import ViewerHeader from "./components/ViewerHeader";
 interface ApiDoc {
   raw: {
     value: string;
@@ -45,9 +46,12 @@ export default function Viewer() {
     if(loaded && apiDoc) {
       const value = JSON.parse(apiDoc.raw.value);
       return (
-        <AsyncApiWrapper>
-          <AsyncApi schema={value.schema} config={value.schema}/>
-        </AsyncApiWrapper>
+        <>
+          <ViewerHeader/>
+          <AsyncApiWrapper>
+            <AsyncApi schema={value.schema} config={value.schema}/>
+          </AsyncApiWrapper>
+        </>
       );
     } else {
       return "Loading";

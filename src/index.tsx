@@ -13,6 +13,7 @@ import '@asyncapi/react-component/lib/styles/fiori.css';
 import './common/icons';
 import ListOfApiDocs from "./ListOfApiDocs";
 import Viewer from "./Viewer";
+import Editor from "./Editor";
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
                     <Viewer/>
                 </Route>
                 <Route path="/edit">
-                    <div>Edit</div>
+                    <Editor/>
                 </Route>
                 <Route path="/list">
                     <ListOfApiDocs/>

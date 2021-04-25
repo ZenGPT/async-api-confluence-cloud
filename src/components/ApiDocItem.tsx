@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import PureApiDocItem from "./PureApiDocItem";
 
 interface ApiDocSummary {
   id: string;
@@ -12,7 +13,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
     // @ts-ignore
     AP.navigator.go('contentview', {contentId: props.id});
   }
-  const [apiDocSumary, setApiDocSummary] = useState<ApiDocSummary>({id: "", link: "", title: ""});
+  const [apiDocSummary, setApiDocSummary] = useState<ApiDocSummary>({id: "", link: "", title: ""});
   useEffect(() => {
     // @ts-ignore
     AP.request({
@@ -34,29 +35,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
   }, []);
   return (
     <>
-      <a href="/" onClick={onClick}
-         className="hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200">
-        <dl className="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
-          <div>
-            <dt className="sr-only">Title</dt>
-            <dd className="group-hover:text-white leading-6 font-medium text-black">
-              Title {apiDocSumary.title}
-            </dd>
-          </div>
-          <div>
-            <dt className="sr-only">ID</dt>
-            <dd className="group-hover:text-light-blue-200 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
-              ID {apiDocSumary.id}
-            </dd>
-          </div>
-          <div className="col-start-2 row-start-1 row-end-3">
-            <dt className="sr-only">Users</dt>
-            <dd className="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-2">
-              image
-            </dd>
-          </div>
-        </dl>
-      </a>
+      <PureApiDocItem id={props.id} link="https://link.com" title={apiDocSummary.title} onClick={onClick} />
     </>
   )
 }

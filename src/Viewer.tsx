@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react";
+import AsyncApi from "@asyncapi/react-component";
+import {AsyncApiWrapper} from "./components";
 interface ApiDoc {
-  value: string;
+  raw: {
+    value: string;
+  }
 }
 export default function Viewer() {
+  const [loaded, setLoaded] = useState(false);
   const [apiDoc, setApiDoc] = useState<ApiDoc>();
 
   function getUrlParam (param: string) {
@@ -18,7 +23,8 @@ export default function Viewer() {
   useEffect(() => {
     const contentId = getUrlParam('contentId');
     // @ts-ignore
-    AP.request({
+    const localAp = AP;
+    localAp.request({
       url: `/rest/api/content/${contentId}`,
       data: {
         "expand": "body.raw"
@@ -26,12 +32,31 @@ export default function Viewer() {
       success: function (response: any) {
         const apiDoc = JSON.parse(response).body;
         console.log(apiDoc);
-        setApiDoc(apiDoc)
+        setApiDoc(apiDoc);
+        setLoaded(true);
+        setTimeout(function () {
+          localAp.resize();
+          localAp.sizeToParent();
+        }, 2000);
       }
     });
-  });
+  }, []);
+  function getContent() {
+    if(loaded && apiDoc) {
+      const value = JSON.parse(apiDoc.raw.value);
+      return (
+        <AsyncApiWrapper>
+          <AsyncApi schema={value.schema} config={value.schema}/>
+        </AsyncApiWrapper>
+      );
+    } else {
+      return "Loading";
+    }
 
+  }
   return (
-    <div>Viewing content: {JSON.stringify(apiDoc)}</div>
+    <div>
+      {getContent()}
+    </div>
   )
 }

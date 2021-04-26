@@ -119,7 +119,7 @@ class Editor extends Component<{}, State> {
     localAp.request({
       url: `/rest/api/content/${contentId}`,
       data: {
-        "expand": "body.raw"
+        "expand": "body.raw,version"
       },
       success: function (response: any) {
         let parsedResponse = JSON.parse(response);
@@ -127,10 +127,10 @@ class Editor extends Component<{}, State> {
 
         if(apiDoc) {
           const value = JSON.parse(apiDoc.raw.value);
-          console.log('!!!updating schema:', value.schema);
           that.updateSchemaFromExternalResource(value.schema);
           that.updateConfig(value.config);
           that.updateVersion(parsedResponse.version.number);
+          console.log('!!!updating version:', parsedResponse.version.number);
         }
         setTimeout(function () {
           localAp.resize();
@@ -142,7 +142,7 @@ class Editor extends Component<{}, State> {
   }
 
   render() {
-    const { schema, config, schemaFromExternalResource } = this.state;
+    const { schema, config, schemaFromExternalResource, version } = this.state;
     const parsedConfig = parse<ConfigInterface>(config || defaultConfig);
 
     return (
@@ -158,6 +158,7 @@ class Editor extends Component<{}, State> {
                   <FetchSchema
                     parentCallback={this.updateSchemaFromExternalResource}
                   />
+                  <label>content version: {version}</label>
                   <CodeEditorComponent
                     key="Schema"
                     code={schema}
@@ -185,8 +186,6 @@ class Editor extends Component<{}, State> {
   }
 
   private updateSchema = (schema: string) => {
-    console.log('!!!updating schema2:', schema);
-
     this.setState({ schema });
   };
 

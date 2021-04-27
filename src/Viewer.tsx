@@ -21,7 +21,7 @@ export default function Viewer() {
     return ''
   }
 
-  useEffect(() => {
+  function loadContent() {
     const contentId = getUrlParam('contentId');
     // @ts-ignore
     const localAp = AP;
@@ -41,6 +41,13 @@ export default function Viewer() {
         }, 2000);
       }
     });
+  }
+  useEffect(() => {
+    loadContent();
+    // @ts-ignore
+    const localAp = AP;
+    localAp.events.onPublic('API_DOC_UPDATED', loadContent);
+
   }, []);
   function getContent() {
     if(loaded && apiDoc) {

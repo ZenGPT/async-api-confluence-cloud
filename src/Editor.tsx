@@ -81,7 +81,7 @@ class Editor extends Component<{}, State> {
         const response = JSON.parse(asyncApi);
         console.log('Async API doc successfully persisted to Confluence', response);
         console.log('Close dialog.')
-        localAp.events.emitPublic('API_DOC_CREATED', jsonData);
+        localAp.events.emitPublic('API_DOC_UPDATED', jsonData);
         localAp.dialog.close();
       }
     });

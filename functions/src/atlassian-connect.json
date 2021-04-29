@@ -1,150 +1,175 @@
 {
-  "key": "com.zenuml.confluence-addon",
-  "name": "ZenUML Sequence Diagram",
-  "description": "ZenUML Sequence Diagram add-on",
+  "key": "my-api",
+  "name": "Async API",
+  "description": "My very first app",
+  "vendor": {
+    "name": "Angry Nerds",
+    "url": "https://www.atlassian.com/angrynerds"
+  },
   "baseUrl": "{{localBaseUrl}}",
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
   "authentication": {
-    "type": "none"
+    "type": "jwt"
   },
   "lifecycle": {
-    "installed": "/installed?version=2021.4.1",
-    "uninstalled": "/uninstalled?version=2021.4.1"
-  },
-  "enableLicensing": true,
-  "links": {
-    "self": "/atlassian-connect.json",
-    "homepage": "https://www.zenuml.com"
+    "installed": "/installed"
   },
   "scopes": [
     "READ",
     "WRITE"
   ],
   "modules": {
-    "dynamicContentMacros": [
+    "generalPages": [
       {
-        "key": "zenuml-sequence-macro",
+        "key": "hello-world-page-jira",
+        "location": "system.top.navigation.bar",
         "name": {
-          "value": "ZenUML Sequence Diagram"
+          "value": "Hello World"
         },
-        "renderModes": {
-          "default": {
-            "url": "/attachment?pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}"
-          }
-        },
-        "url": "/sequence-viewer.html?pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}",
-        "description": {
-          "value": "Create a ZenUML Sequence Diagram"
-        },
-        "outputType": "block",
-        "bodyType": "plain-text",
-        "editor": {
-          "url": "/sequence-editor.html?update=202103291207",
-          "width": "100%",
-          "height": "100%"
-        },
-        "icon": {
-          "width": 16,
-          "height": 16,
-          "url": "image/zenuml_logo.png"
-        },
-        "documentation": {
-          "url": "https://zenuml.atlassian.net/wiki/spaces/Doc/overview"
-        },
-        "categories": [
-          "visuals"
-        ],
-        "featured": true,
-        "parameters": [
+        "url": "/hello-world",
+        "conditions": [
           {
-            "identifier": "diagramName",
-            "name": {
-              "value": "Diagram name (do not change)",
-              "i18n": "diagramName"
-            },
-            "type": "string",
-            "required": true,
-            "multiple": false,
-            "defaultValue": "None"
+            "condition": "user_is_logged_in"
           }
         ]
       },
       {
-        "key": "zenuml-graph-macro",
+        "key": "hello-world-page-confluence",
+        "location": "system.header/left",
         "name": {
-          "value": "ZenUML Graph"
+          "value": "Hello World"
         },
-        "renderModes": {
-          "default": {
-            "url": "/attachment?pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}"
-          }
-        },
-        "url": "/drawio/viewer.html?pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}",
-        "description": {
-          "value": "Create a ZenUML Graph"
-        },
-        "outputType": "block",
-        "bodyType": "none",
-        "editor": {
-          "url": "/drawio/editor.html",
-          "editTitle": {
-            "value": "Edit ZenUML Graph"
-          },
-          "insertTitle": {
-            "value": "Create ZenUML Graph"
-          },
-          "width": "100%",
-          "height": "100%",
-          "cacheable": true
-        },
-        "icon": {
-          "width": 16,
-          "height": 16,
-          "url": "image/zenuml_logo.png"
-        },
-        "documentation": {
-          "url": "https://zenuml.atlassian.net/wiki/spaces/Doc/overview"
-        },
-        "categories": [
-          "visuals"
-        ],
-        "featured": true,
-        "parameters": [
+        "url": "/hello-world",
+        "conditions": [
           {
-            "identifier": "diagramName",
-            "name": {
-              "value": "Diagram name (do not change)",
-              "i18n": "diagramName"
-            },
-            "type": "string",
-            "required": true,
-            "multiple": false,
-            "defaultValue": "None"
+            "condition": "user_is_logged_in"
+          }
+        ]
+      },
+      {
+        "key": "my-api-viewer",
+        "location": "",
+        "name": {
+          "value": "My API Doc"
+        },
+        "url": "/view?contentId={content.id}",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      },
+      {
+        "key": "api-doc-list",
+        "location": "",
+        "name": {
+          "value": "My API Documents"
+        },
+        "url": "/list?spaceKey={space.key}",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
           }
         ]
       }
     ],
-    "webPanels": [ {
-      "url": "/zenuml-graph-macro-migrator.html?web-panel=atl.footer&version=2021.4.1&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}",
-      "location": "atl.footer",
-      "conditions": [
-        {
-          "condition": "viewing_content"
+    "customContent": [
+      {
+        "key": "async-api-doc",
+        "name": {
+          "value": "My API Documents"
+        },
+        "uiSupport": {
+          "contentViewComponent": {
+            "moduleKey": "my-api-viewer"
+          },
+          "listViewComponent": {
+            "moduleKey": "api-doc-list"
+          },
+          "icons": {
+            "item": {
+              "url": "/zenapi.png"
+            }
+          }
+        },
+        "apiSupport": {
+          "bodyType": "raw",
+          "supportedContainerTypes": [
+            "space"
+          ],
+          "supportedChildTypes": [
+            "ac:my-api:note"
+          ],
+          "indexing": {
+            "enabled": true
+          }
         }
-      ],
-      "layout": {
-        "width": "100%",
-        "height": "10px"
       },
-      "weight": 999,
-      "key": "zenuml-panel-migrator",
-      "name": { "value": "Web-Panel: ZenUML Graph Macro Migrator" }
-    } ]
+      {
+        "key": "note",
+        "name": {
+          "value": "Notes"
+        },
+        "uiSupport": {
+          "contentViewComponent": {
+            "moduleKey": "my-api-viewer"
+          },
+          "listViewComponent": {
+            "moduleKey": "notesViewer"
+          },
+          "icons": {
+            "item": {
+              "url": "/images/notes.png"
+            }
+          }
+        },
+        "apiSupport": {
+          "supportedContainerTypes": [
+            "ac:my-api:async-api-doc"
+          ]
+        }
+      }
+    ],
+    "dialogs": [
+      {
+        "url": "/create?spaceKey={space.key}",
+        "options": {
+          "height": "100%",
+          "width": "100%",
+          "header": {
+            "value": "Create a new API Document"
+          }
+        },
+        "key": "newApiDoc"
+      },
+      {
+        "url": "/edit?spaceKey={space.key}&contentId={content.id}",
+        "options": {
+          "height": "100%",
+          "width": "100%",
+          "header": {
+            "value": "Create a new API Document"
+          }
+        },
+        "key": "editApiDoc"
+      },
+      {
+        "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
+        "options": {
+          "height": "420px",
+          "width": "600px",
+          "header": {
+            "value": "Add a new note"
+          }
+        },
+        "key": "newNote"
+      }
+    ]
   },
   "apiMigrations": {
     "gdpr": true
-  },
-  "vendor": {
-    "name": "ZenUML",
-    "url": "https://www.zenuml.com/"
   }
 }

@@ -21,28 +21,29 @@ export default function Viewer() {
     return ''
   }
 
-  function loadContent() {
-    const contentId = getUrlParam('contentId');
-    // @ts-ignore
-    const localAp = AP;
-    localAp.request({
-      url: `/rest/api/content/${contentId}`,
-      data: {
-        "expand": "body.raw"
-      },
-      success: function (response: any) {
-        const apiDoc = JSON.parse(response).body;
-        console.log(apiDoc);
-        setApiDoc(apiDoc);
-        setLoaded(true);
-        setTimeout(function () {
-          localAp.resize();
-          localAp.sizeToParent();
-        }, 2000);
-      }
-    });
-  }
   useEffect(() => {
+    function loadContent() {
+      const contentId = getUrlParam('contentId');
+      // @ts-ignore
+      const localAp = AP;
+      localAp.request({
+        url: `/rest/api/content/${contentId}`,
+        data: {
+          "expand": "body.raw"
+        },
+        success: function (response: any) {
+          const apiDoc = JSON.parse(response).body;
+          console.log(apiDoc);
+          setApiDoc(apiDoc);
+          setLoaded(true);
+          setTimeout(function () {
+            localAp.resize();
+            localAp.sizeToParent();
+          }, 2000);
+        }
+      });
+    }
+
     loadContent();
     // @ts-ignore
     const localAp = AP;

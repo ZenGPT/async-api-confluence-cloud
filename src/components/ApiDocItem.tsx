@@ -32,7 +32,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
       }
     });
 
-  }, []);
+  }, [props.id]);
   return (
     <>
       <PureApiDocItem id={props.id} link="https://link.com" title={apiDocSummary.title} onClick={onClick} />

@@ -16,14 +16,15 @@ export default function ListOfApiDocs(this: any) {
     }
   }]);
 
-  function loadApiDocList() {
+  async function loadApiDocList() {
     // @ts-ignore
     const localAp = AP;
+    const context = await localAp.context.getContext();
     localAp.request({
       url: "/rest/api/content/",
       data: {
         "type": 'ac:my-api:async-api-doc',
-        "spaceKey": "ZS",
+        "spaceKey": context.confluence.space.key,
         "expand": "children"
       },
       success: function (response: any) {

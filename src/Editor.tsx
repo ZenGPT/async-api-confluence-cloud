@@ -39,7 +39,7 @@ class Editor extends Component<{}, State> {
     console.log('Save schema.', this.state.schema)
   }
 
-  saveAndClose = () => {
+  saveAndClose = async () => {
     this.saveConfig();
     this.saveSchema();
     let query = queryString.parse(window.location.search);
@@ -48,11 +48,14 @@ class Editor extends Component<{}, State> {
 
     const apiSchemaJson: any = yaml.load(this.state.schema);
     console.log('!!!!!!api schema doc', apiSchemaJson);
+    // @ts-ignore
+    let localAp = AP;
+    const context = await localAp.context.getContext();
     const jsonData = {
       "id": contentId,
       "type": "ac:my-api:async-api-doc",
       "space": {
-        "key": "ZS"
+        "key": context.confluence.space.key || "UNKNOWN"
       },
       "title": apiSchemaJson?.info?.title || 'Untitled',
       "body": {
@@ -65,9 +68,7 @@ class Editor extends Component<{}, State> {
         "number": this.state.version + 1
       }
     }
-    // @ts-ignore
-    let localAp = AP;
-    if(!localAp) {
+    if (!localAp) {
       console.log('AP not available. Existing...');
       return;
     }

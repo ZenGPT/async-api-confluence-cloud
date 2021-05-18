@@ -8,13 +8,7 @@ interface ApiDocWrapper {
   id: string;
 }
 export default function ListOfApiDocs(this: any) {
-  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([{
-    id: "1234",
-    _links: {
-      webui: "a web link",
-      self: "https://zenuml-stg.atlassian.net"
-    }
-  }]);
+  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([]);
 
   async function loadApiDocList() {
     // @ts-ignore

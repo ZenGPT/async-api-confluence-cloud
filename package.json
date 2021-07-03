@@ -4,7 +4,7 @@
   "description": "Playground app for AsyncApi React Component",
   "homepage": "https://async-api.github.io",
   "dependencies": {
-    "@asyncapi/react-component": "^0.22.4",
+    "@asyncapi/react-component": "^0.24.3",
     "@atlaskit/button": "^15.1.5",
     "@atlaskit/icon": "^21.5.0",
     "@craco/craco": "^6.1.1",

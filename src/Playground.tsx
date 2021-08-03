@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import AsyncApi, { ConfigInterface } from '@asyncapi/react-component';
 
 import {

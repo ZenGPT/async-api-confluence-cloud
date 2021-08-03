@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import queryString from 'query-string';
 import AsyncApi, { ConfigInterface } from '@asyncapi/react-component';
 

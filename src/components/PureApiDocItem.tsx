@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PureApiDocItem(props: any) {
   return (
     <a href="/" onClick={props.onClick}

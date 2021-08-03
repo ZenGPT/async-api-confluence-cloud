@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
@@ -9,7 +8,7 @@ import './index.css'
 import Playground from './Playground';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import '@asyncapi/react-component/lib/styles/fiori.css';
+import '@asyncapi/react-component/styles/default.css';
 import './common/icons';
 import ListOfApiDocs from "./ListOfApiDocs";
 import Viewer from "./Viewer";

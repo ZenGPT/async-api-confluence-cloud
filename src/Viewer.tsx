@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import AsyncApi from "@asyncapi/react-component";
 import {AsyncApiWrapper} from "./components";
 import ViewerHeader from "./components/ViewerHeader";

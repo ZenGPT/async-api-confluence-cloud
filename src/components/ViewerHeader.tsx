@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from "@atlaskit/button";
 import EditIcon from "@atlaskit/icon/glyph/edit";
 

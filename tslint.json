@@ -27,7 +27,9 @@
     "use-isnan": true,
     "no-debugger": true,
     "radix": true,
-    "react-hooks-nesting": "error"
+    "react-hooks-nesting": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "jsRules": {},
   "linterOptions": {

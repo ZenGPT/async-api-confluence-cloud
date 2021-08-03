@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from "@atlaskit/button";
 import IconComponent from './Icon';
 

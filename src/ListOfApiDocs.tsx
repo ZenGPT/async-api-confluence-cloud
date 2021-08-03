@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import ApiDocItem from './components/ApiDocItem';
 interface ApiDocWrapper {
   _links: {

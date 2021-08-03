@@ -1,7 +1,7 @@
-import React from 'react';
 import {Story} from "@storybook/react";
 import PureApiDocItem from "../components/PureApiDocItem";
 import 'index.css'
+
 export default {
   title: 'Example/ApiDocItem',
   component: PureApiDocItem

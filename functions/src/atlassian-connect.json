@@ -170,6 +170,7 @@
     ]
   },
   "apiMigrations": {
-    "gdpr": true
+    "gdpr": true,
+    "signed-install": true
   }
 }

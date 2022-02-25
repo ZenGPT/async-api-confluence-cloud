@@ -1,0 +1,176 @@
+{
+    "key": "my-api",
+    "name": "Async API",
+    "description": "My very first app",
+    "vendor": {
+        "name": "Angry Nerds",
+        "url": "https://www.atlassian.com/angrynerds"
+    },
+    "baseUrl": "{{localBaseUrl}}",
+    "links": {
+        "self": "{{localBaseUrl}}/atlassian-connect.json",
+        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+    },
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "/installed"
+    },
+    "scopes": [
+        "READ",
+        "WRITE"
+    ],
+    "modules": {
+        "generalPages": [
+            {
+                "key": "hello-world-page-jira",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [
+                    {
+                        "condition": "user_is_logged_in"
+                    }
+                ]
+            },
+            {
+                "key": "hello-world-page-confluence",
+                "location": "system.header/left",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [
+                    {
+                        "condition": "user_is_logged_in"
+                    }
+                ]
+            },
+            {
+                "key": "my-api-viewer",
+                "location": "",
+                "name": {
+                    "value": "My API Doc"
+                },
+                "url": "/view?contentId={content.id}",
+                "conditions": [
+                    {
+                        "condition": "user_is_logged_in"
+                    }
+                ]
+            },
+            {
+                "key": "api-doc-list",
+                "location": "",
+                "name": {
+                    "value": "My API Documents"
+                },
+                "url": "/list?spaceKey={space.key}",
+                "conditions": [
+                    {
+                        "condition": "user_is_logged_in"
+                    }
+                ]
+            }
+        ],
+        "customContent": [
+            {
+                "key": "async-api-doc",
+                "name": {
+                    "value": "My API Documents"
+                },
+                "uiSupport": {
+                    "contentViewComponent": {
+                        "moduleKey": "my-api-viewer"
+                    },
+                    "listViewComponent": {
+                        "moduleKey": "api-doc-list"
+                    },
+                    "icons": {
+                        "item": {
+                            "url": "/zenapi-logo.png"
+                        }
+                    }
+                },
+                "apiSupport": {
+                    "bodyType": "raw",
+                    "supportedContainerTypes": [
+                        "space"
+                    ],
+                    "supportedChildTypes": [
+                        "ac:my-api:note"
+                    ],
+                    "indexing": {
+                        "enabled": true
+                    }
+                }
+            },
+            {
+                "key": "note",
+                "name": {
+                    "value": "Notes"
+                },
+                "uiSupport": {
+                    "contentViewComponent": {
+                        "moduleKey": "my-api-viewer"
+                    },
+                    "listViewComponent": {
+                        "moduleKey": "notesViewer"
+                    },
+                    "icons": {
+                        "item": {
+                            "url": "/images/notes.png"
+                        }
+                    }
+                },
+                "apiSupport": {
+                    "supportedContainerTypes": [
+                        "ac:my-api:async-api-doc"
+                    ]
+                }
+            }
+        ],
+        "dialogs": [
+            {
+                "url": "/create?spaceKey={space.key}",
+                "options": {
+                    "height": "100%",
+                    "width": "100%",
+                    "header": {
+                        "value": "Create a new API Document"
+                    }
+                },
+                "key": "newApiDoc"
+            },
+            {
+                "url": "/edit?spaceKey={space.key}&contentId={content.id}",
+                "options": {
+                    "height": "100%",
+                    "width": "100%",
+                    "header": {
+                        "value": "Create a new API Document"
+                    }
+                },
+                "key": "editApiDoc"
+            },
+            {
+                "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
+                "options": {
+                    "height": "420px",
+                    "width": "600px",
+                    "header": {
+                        "value": "Add a new note"
+                    }
+                },
+                "key": "newNote"
+            }
+        ]
+    },
+    "apiMigrations": {
+        "gdpr": true,
+        "signed-install": true
+    }
+}

@@ -69,7 +69,7 @@
     "start": "node app.js",
     "start:react": "craco start",
     "test": "craco test",
-    "build": "craco build && cd functions && npm run build",
+    "build": "craco build && cd functions && npm install && npm run build",
     "install:reactcomp": "chmod +x ./bump-react-comp.sh && ./bump-react-comp.sh",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"

@@ -18,17 +18,13 @@ module.exports = {
         target: 'http://localhost:5000/',
         changeOrigin: false
       },
-      '/installed': {
-        target: 'http://localhost:5000/',
-        changeOrigin: false
-      },
     },
     compress: true,  // This reduces the app.js from 4.8MB to 1.2MB
     before: function (app) {
-      app.get(/installed/, function (req, res) {
+      app.post(/installed/, function (req, res) {
         res.status(200).send(`OK`);
       })
-      app.get(/uninstalled/, function (req, res) {
+      app.post(/uninstalled/, function (req, res) {
         res.status(200).send(`OK`);
       })
     },

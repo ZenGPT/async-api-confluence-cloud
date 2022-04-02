@@ -21,10 +21,10 @@ module.exports = {
     },
     compress: true,  // This reduces the app.js from 4.8MB to 1.2MB
     before: function (app) {
-      app.post(/installed/, function (req, res) {
+      app.post(/uninstalled/, function (req, res) {
         res.status(200).send(`OK`);
       })
-      app.post(/uninstalled/, function (req, res) {
+      app.post(/installed/, function (req, res) {
         res.status(200).send(`OK`);
       })
     },

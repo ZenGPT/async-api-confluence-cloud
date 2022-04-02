@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import AP from './model/AP'
 import ApiDocItem from './components/ApiDocItem';
 interface ApiDocWrapper {
   _links: {
@@ -11,11 +12,11 @@ export default function ListOfApiDocs(this: any) {
   const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([]);
 
   async function loadApiDocList() {
-    // @ts-ignore
     const localAp = AP;
     const context = await localAp.context.getContext();
     localAp.request({
       url: "/rest/api/content/",
+      type: "POST",
       data: {
         "type": 'ac:my-api:async-api-doc',
         "spaceKey": context.confluence.space.key,

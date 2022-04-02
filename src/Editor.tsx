@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import queryString from 'query-string';
 import AsyncApi, { ConfigInterface } from '@asyncapi/react-component';
+import AP from './model/AP'
 
 import {
   Navigation,
@@ -44,11 +45,8 @@ class Editor extends Component<{}, State> {
     this.saveSchema();
     let query = queryString.parse(window.location.search);
     const contentId = query.contentId;
-    console.log('!!!contentId:', contentId);
 
     const apiSchemaJson: any = yaml.load(this.state.schema);
-    console.log('!!!!!!api schema doc', apiSchemaJson);
-    // @ts-ignore
     let localAp = AP;
     const context = await localAp.context.getContext();
     const jsonData = {
@@ -112,7 +110,6 @@ class Editor extends Component<{}, State> {
     );
     let query = queryString.parse(window.location.search);
     const contentId = query.contentId;
-    console.log('!!!contentId:', contentId);
     if (!contentId) return;
     const that = this;
     // @ts-ignore
@@ -131,7 +128,6 @@ class Editor extends Component<{}, State> {
           that.updateSchemaFromExternalResource(value.schema);
           that.updateConfig(value.config);
           that.updateVersion(parsedResponse.version.number);
-          console.log('!!!updating version:', parsedResponse.version.number);
         }
         setTimeout(function () {
           localAp.resize();

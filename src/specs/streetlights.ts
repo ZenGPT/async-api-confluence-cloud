@@ -1,5 +1,5 @@
 export const streetlights = `
-asyncapi: '2.0.0'
+asyncapi: '2.3.0'
 id: 'urn:com:smartylighting:streetlights:server'
 info:
   title: Streetlights API

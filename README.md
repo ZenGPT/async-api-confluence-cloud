@@ -7,13 +7,18 @@
 ```
 Or
 ```bash
-# Start static react server at 3000
-npm run start:react
-# Start cloudflare proxy and point to localhost:5000
-cloudflared --hostname air.zenuml.com --url http://localhost:5000
-# Start atalssian connect server at localhost:5000
-npm start
+# cd functions && npm run build:watch
+# firebase emulators:start --only hosting,functions
+
+// another terminal, start react and proxy to http://localhost:5000 for functions
+#npm run start:react
+# Start cloudflare proxy and point to devServer
+cloudflared --hostname air.zenuml.com --url http://localhost:3000
 ```
+
+### Editor
+
+Go to localhost:3000/edit to open the editor.
 
 ## Release
 Push to the main branch. GitHub action will deploy it to firebase hosting

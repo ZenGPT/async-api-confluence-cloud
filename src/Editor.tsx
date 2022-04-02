@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import queryString from 'query-string';
 import AsyncApi, { ConfigInterface } from '@asyncapi/react-component';
+import AP from './model/AP'
 
 import {
   Navigation,
@@ -46,7 +47,6 @@ class Editor extends Component<{}, State> {
     const contentId = query.contentId;
 
     const apiSchemaJson: any = yaml.load(this.state.schema);
-    // @ts-ignore
     let localAp = AP;
     const context = await localAp.context.getContext();
     const jsonData = {

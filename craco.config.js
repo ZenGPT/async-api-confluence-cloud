@@ -52,19 +52,5 @@ module.exports = {
         require('autoprefixer'),
       ],
     },
-  },
-  plugins: [
-    {
-      plugin: {
-        overrideDevServerConfig: ({ devServerConfig, cracoConfig, pluginOptions, context: { env, paths, proxy, allowedHost } }) => {
-          console.log('devServerConfig', devServerConfig);
-          // Add the proxy configuration
-          devServerConfig.port = 8080;
-          return devServerConfig;
-
-          },
-      },
-      options: {}
-    }
-  ]
+  }
 }

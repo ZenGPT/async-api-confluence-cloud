@@ -16,7 +16,7 @@ export default function ListOfApiDocs(this: any) {
     const context = await localAp.context.getContext();
     localAp.request({
       url: "/rest/api/content/",
-      type: "POST",
+      type: "GET",
       data: {
         "type": 'ac:my-api:async-api-doc',
         "spaceKey": context.confluence.space.key,

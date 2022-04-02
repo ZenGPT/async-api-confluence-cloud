@@ -20,7 +20,6 @@ export default class MockAp implements IAp {
   public confluence: any
   public request: any
   public navigator: any
-  public dialog: any;
   public user: any;
 
   private readonly contentId: any
@@ -82,6 +81,12 @@ export default class MockAp implements IAp {
           }
         }
       }
+    }
+  }
+
+  dialog = {
+    create: async (args: any) => {
+      console.warn('Creating dialog from MocAp with args ', args);
     }
   }
 }

@@ -18,10 +18,6 @@ module.exports = {
         target: 'http://localhost:5000/',
         changeOrigin: false
       },
-      '/atlassian-connect-lite.json': {
-        target: 'http://localhost:5000/',
-        changeOrigin: false
-      },
       '/installed': {
         target: 'http://localhost:5000/',
         changeOrigin: false

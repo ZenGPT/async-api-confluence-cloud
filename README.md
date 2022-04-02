@@ -15,6 +15,10 @@ cloudflared --hostname air.zenuml.com --url http://localhost:5000
 npm start
 ```
 
+### Editor
+
+Go to localhost:3000/edit to open the editor.
+
 ## Release
 Push to the main branch. GitHub action will deploy it to firebase hosting
 and functions.

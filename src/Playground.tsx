@@ -41,7 +41,6 @@ class Playground extends Component<{}, State> {
     this.saveConfig();
     this.saveSchema();
     const apiSchemaJson: any = yaml.load(this.state.schema);
-    console.log('!!!!!!api schema doc', apiSchemaJson);
     // @ts-ignore
     let localAp = AP;
     const context = await localAp.context.getContext();

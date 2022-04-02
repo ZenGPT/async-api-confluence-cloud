@@ -8,7 +8,7 @@ import './index.css'
 import Playground from './Playground';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import '@asyncapi/react-component/styles/default.css';
+// import '@asyncapi/react-component/styles/default.css';
 import './common/icons';
 import ListOfApiDocs from "./ListOfApiDocs";
 import Viewer from "./Viewer";

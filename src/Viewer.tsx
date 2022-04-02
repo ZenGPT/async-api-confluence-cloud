@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import AsyncApi from "@asyncapi/react-component";
+import AP from './model/AP'
 import {AsyncApiWrapper} from "./components";
 import ViewerHeader from "./components/ViewerHeader";
 interface ApiDoc {
@@ -24,7 +25,6 @@ export default function Viewer() {
   useEffect(() => {
     function loadContent() {
       const contentId = getUrlParam('contentId');
-      // @ts-ignore
       const localAp = AP;
       localAp.request({
         url: `/rest/api/content/${contentId}`,

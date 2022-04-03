@@ -64,7 +64,7 @@ export default function ListOfApiDocs(this: any) {
 
   return (
     <>
-      <section className="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4">
+      <section className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <header className="flex items-center justify-between">
           <h2 className="text-lg leading-6 font-medium text-black">Async API Documents</h2>
           <button onClick={createApiDoc}
@@ -77,7 +77,7 @@ export default function ListOfApiDocs(this: any) {
             New
           </button>
         </header>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+        <ul className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
           <li className="hover:shadow-lg flex rounded-lg">
             <a href="/" onClick={createApiDoc}
                className="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">

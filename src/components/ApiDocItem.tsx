@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import PureApiDocItem from "./PureApiDocItem";
+import yaml from "js-yaml";
 
 interface ApiDocSummary {
   id: string;
   link: string;
+  description: string;
   title: string;
+  version: string;
 }
 
 export default function ApiDocItem(props: ApiDocSummary) {
@@ -13,7 +16,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
     // @ts-ignore
     AP.navigator.go('contentview', {contentId: props.id});
   }
-  const [apiDocSummary, setApiDocSummary] = useState<ApiDocSummary>({id: "", link: "", title: ""});
+  const [apiDocSummary, setApiDocSummary] = useState<ApiDocSummary>({id: "", link: "", description: "", title: "", version: ""});
   useEffect(() => {
     // @ts-ignore
     AP.request({
@@ -24,10 +27,16 @@ export default function ApiDocItem(props: ApiDocSummary) {
       success: function (response: any) {
         const apiDoc = JSON.parse(response);
         console.log(apiDoc);
+        const apiDocContent = JSON.parse(apiDoc.body.raw.value);
+        console.log(apiDocContent.schema);
+        const schema: any = yaml.load(apiDocContent.schema);
+
         setApiDocSummary({
           id: props.id,
-          link: 'some link',
-          title: apiDoc.title
+          link: props.link,
+          description: schema?.info?.description,
+          title: apiDoc.title,
+          version: schema?.info?.version
         });
       }
     });
@@ -35,7 +44,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
   }, [props.id]);
   return (
     <>
-      <PureApiDocItem id={props.id} link="https://link.com" title={apiDocSummary.title} onClick={onClick} />
+      <PureApiDocItem id={props.id} description={apiDocSummary.description} title={apiDocSummary.title} version={apiDocSummary.version} onClick={onClick} />
     </>
   )
 }

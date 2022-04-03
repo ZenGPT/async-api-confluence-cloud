@@ -49,7 +49,7 @@ export default function ListOfApiDocs(this: any) {
     const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
     return (
       <li key={doc.id}>
-        <ApiDocItem id={doc.id} link={apiDocDisplayUrl} title={'Untitled'}/>
+        <ApiDocItem id={doc.id} link={apiDocDisplayUrl} description={''} title={'Untitled'} version={'Unknown'}/>
       </li>
     )
   });

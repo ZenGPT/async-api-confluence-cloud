@@ -77,11 +77,11 @@ export default function ListOfApiDocs(this: any) {
             New
           </button>
         </header>
-        <ul className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-          <li className="hover:shadow-lg flex rounded-lg">
+        <ul className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 bg-gray-100 p-8">
+          <li className="hover:shadow-lg flex rounded-lg bg-white">
             <a href="/" onClick={createApiDoc}
                className="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
-              New Async API Doc
+              + New Async API Doc
             </a>
           </li>
           {docs}

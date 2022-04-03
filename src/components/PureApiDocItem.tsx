@@ -1,3 +1,6 @@
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
+
 export default function PureApiDocItem(props: any) {
   return (
     <>
@@ -13,7 +16,9 @@ export default function PureApiDocItem(props: any) {
               {props.title}
             </a>
           </h3>
-          <p className="text-sm text-gray-500">{props.description}</p>
+          <div className="text-sm text-gray-500">
+            <ReactMarkdown children={props.description} remarkPlugins={[remarkGfm]}/>
+          </div>
           <div className="flex-1 flex flex-col justify-end">
             <p className="text-sm italic text-gray-500">{props.id}</p>
             <p className="text-base font-medium text-gray-900">{props.version}</p>

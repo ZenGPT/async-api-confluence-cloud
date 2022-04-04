@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import AP from './model/AP'
 import ApiDocItem from './components/ApiDocItem';
+import {PlusIcon} from "@heroicons/react/solid";
 interface ApiDocWrapper {
   _links: {
     self: string;
@@ -26,7 +27,7 @@ export default function ListOfApiDocs(this: any) {
         let customers = JSON.parse(response).results;
         console.log(customers);
         setApiDocsList(customers);
-        localAp.resize();
+        setTimeout(localAp.resize, 1000);
       },
       error: function (err: any) {
         console.log("err - ", err)
@@ -80,8 +81,8 @@ export default function ListOfApiDocs(this: any) {
         <ul className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 bg-gray-100 p-8">
           <li className="hover:shadow-lg flex rounded-lg bg-white">
             <a href="/" onClick={createApiDoc}
-               className="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
-              + New Async API Doc
+               className="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4 text-blue-600">
+              <PlusIcon className="w-5 h-5" aria-hidden="true"/> New Async API Doc
             </a>
           </li>
           {docs}

@@ -4,7 +4,15 @@ import { BookOpenIcon, PencilAltIcon } from '@heroicons/react/solid'
 
 export default function PureApiDocItem(props: any) {
   function editApiDoc() {
-    console.error('Not implemented yet');
+    // @ts-ignore
+    AP.dialog.create({
+      key: 'editApiDoc',
+      chrome: false,
+      customData: {
+        contentId: props.id
+      }
+    });
+
   }
 
   return (
@@ -33,24 +41,22 @@ export default function PureApiDocItem(props: any) {
             <div className="w-0 flex-1 flex"
                  onClick={props.onClick}
             >
-              <a
-                href={``}
+              <button
                 className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
               >
                 <BookOpenIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
                 <span className="ml-3">View</span>
-              </a>
+              </button>
             </div>
             <div className="-ml-px w-0 flex-1 flex"
               onClick={editApiDoc}
             >
-              <a
-                href={``}
+              <button
                 className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
               >
                 <PencilAltIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
                 <span className="ml-3">Edit</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>

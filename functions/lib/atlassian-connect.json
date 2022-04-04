@@ -3,8 +3,8 @@
     "name": "Async API",
     "description": "My very first app",
     "vendor": {
-        "name": "Angry Nerds",
-        "url": "https://www.atlassian.com/angrynerds"
+        "name": "P&D Vision",
+        "url": "https://www.zenuml.com"
     },
     "baseUrl": "{{localBaseUrl}}",
     "links": {
@@ -23,19 +23,6 @@
     ],
     "modules": {
         "generalPages": [
-            {
-                "key": "hello-world-page-jira",
-                "location": "system.top.navigation.bar",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [
-                    {
-                        "condition": "user_is_logged_in"
-                    }
-                ]
-            },
             {
                 "key": "hello-world-page-confluence",
                 "location": "system.header/left",

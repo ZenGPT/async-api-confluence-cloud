@@ -71,11 +71,12 @@
   },
   "scripts": {
     "start:react": "craco start",
-    "start:local": "node app.js",
+    "start:firebase": "firebase emulators:start --only hosting,functions",
     "start:cloudflared": "cloudflared --hostname air.zenuml.com --url http://localhost:5000",
-    "start:sit": "concurrently \"npm run start:react\" \"npm run start:local\" \"npm run start:cloudflared\"",
+    "start:sit": "concurrently \"npm run start:react\" \"npm run build:functions:watch\" \"npm run start:firebase\" \"npm run start:cloudflared\"",
     "test": "craco test",
     "build": "craco build && cd functions && npm install && npm run build",
+    "build:functions:watch": "cd functions && npm run build:watch",
     "install:reactcomp": "chmod +x ./bump-react-comp.sh && ./bump-react-comp.sh",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"

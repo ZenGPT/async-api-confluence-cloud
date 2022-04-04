@@ -72,7 +72,7 @@
   "scripts": {
     "start:react": "craco start",
     "start:firebase": "firebase emulators:start --only hosting,functions",
-    "start:cloudflared": "cloudflared --hostname air.zenuml.com --url http://localhost:5000",
+    "start:cloudflared": "cloudflared --hostname air.zenuml.com --url http://localhost:8080",
     "start:sit": "concurrently \"npm run start:react\" \"npm run build:functions:watch\" \"npm run start:firebase\" \"npm run start:cloudflared\"",
     "test": "craco test",
     "build": "craco build && cd functions && npm install && npm run build",

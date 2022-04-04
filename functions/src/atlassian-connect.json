@@ -1,7 +1,7 @@
 {
   "key": "my-api",
   "name": "Async API",
-  "description": "My very first app",
+  "description": "Manage your async API on Confluence",
   "vendor": {
     "name": "P&D Vision",
     "url": "https://www.zenuml.com"

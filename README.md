@@ -13,7 +13,7 @@ Or
 // another terminal, start react and proxy to http://localhost:5000 for functions
 #npm run start:react
 # Start cloudflare proxy and point to devServer
-cloudflared --hostname air.zenuml.com --url http://localhost:3000
+cloudflared --hostname air.zenuml.com --url http://localhost:8080
 ```
 
 ### Editor

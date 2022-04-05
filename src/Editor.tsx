@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import queryString from 'query-string';
 import AsyncApi, { ConfigInterface } from '@asyncapi/react-component';
 import AP from './model/AP'
 
@@ -28,9 +27,16 @@ interface State {
   schemaFromExternalResource: string;
   refreshing: boolean;
   version: number;
+  contentId: string;
 }
 
 class Editor extends Component<{}, State> {
+  getCustomData = async (): Promise<any> => {
+    return new Promise<any>((reject, resolve) => {
+      AP.dialog.getCustomData(resolve, reject);
+    })
+  };
+
   updateSchemaFn: (value: string) => void;
   updateConfigFn: (value: string) => void;
   saveConfig = () => {
@@ -43,8 +49,7 @@ class Editor extends Component<{}, State> {
   saveAndClose = async () => {
     this.saveConfig();
     this.saveSchema();
-    let query = queryString.parse(window.location.search);
-    const contentId = query.contentId;
+    const contentId = this.state.contentId;
 
     const apiSchemaJson: any = yaml.load(this.state.schema);
     let localAp = AP;
@@ -91,7 +96,8 @@ class Editor extends Component<{}, State> {
     config: defaultConfig,
     schemaFromExternalResource: '',
     refreshing: false,
-    version: 1
+    version: 1,
+    contentId: '',
   };
 
   constructor(props: any) {
@@ -108,34 +114,48 @@ class Editor extends Component<{}, State> {
       this.startRefreshing,
       this.stopRefreshing,
     );
-    let query = queryString.parse(window.location.search);
-    const contentId = query.contentId;
-    if (!contentId) return;
-    const that = this;
-    // @ts-ignore
-    const localAp = AP;
-    localAp.request({
-      url: `/rest/api/content/${contentId}`,
-      data: {
-        "expand": "body.raw,version"
-      },
-      success: function (response: any) {
-        let parsedResponse = JSON.parse(response);
-        const apiDoc = parsedResponse.body;
 
-        if(apiDoc) {
-          const value = JSON.parse(apiDoc.raw.value);
-          that.updateSchemaFromExternalResource(value.schema);
-          that.updateConfig(value.config);
-          that.updateVersion(parsedResponse.version.number);
+
+  }
+
+  async componentWillMount() {
+
+    try {
+      const customData = await this.getCustomData();
+      console.log('customData', customData);
+      this.setState({contentId: customData.contentId});
+      // let query = queryString.parse(window.location.search);
+      const contentId = this.state.contentId;
+      if (!contentId) return;
+      const that = this;
+      // @ts-ignore
+      const localAp = AP;
+      localAp.request({
+        url: `/rest/api/content/${contentId}`,
+        data: {
+          "expand": "body.raw,version"
+        },
+        success: function (response: any) {
+          let parsedResponse = JSON.parse(response);
+          const apiDoc = parsedResponse.body;
+
+          if(apiDoc) {
+            const value = JSON.parse(apiDoc.raw.value);
+            that.updateSchemaFromExternalResource(value.schema);
+            that.updateConfig(value.config);
+            that.updateVersion(parsedResponse.version.number);
+          }
+          setTimeout(function () {
+            localAp.resize();
+            localAp.sizeToParent();
+          }, 2000);
         }
-        setTimeout(function () {
-          localAp.resize();
-          localAp.sizeToParent();
-        }, 2000);
-      }
-    });
-
+      });
+    } catch (e) {
+      console.log('Error getting custom data', e);
+    } finally {
+      console.log('Finally');
+    }
   }
 
   render() {
@@ -175,7 +195,7 @@ class Editor extends Component<{}, State> {
             </Tabs>
           </CodeEditorsWrapper>
           <AsyncApiWrapper>
-            <AsyncApi schema={schema} config={parsedConfig} />
+            <AsyncApi schema={schema} config={parsedConfig}/>
           </AsyncApiWrapper>
         </SplitWrapper>
       </PlaygroundWrapper>

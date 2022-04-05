@@ -1,12 +1,19 @@
 import Button from "@atlaskit/button";
 import EditIcon from "@atlaskit/icon/glyph/edit";
+import queryString from "query-string";
 
 export default function ViewerHeader() {
   function editApiDoc() {
+    let query = queryString.parse(window.location.search);
+    const contentId = query.contentId;
+
     // @ts-ignore
     AP.dialog.create({
       key: 'editApiDoc',
-      chrome: false
+      chrome: false,
+      customData: {
+        contentId
+      }
     });
   }
 

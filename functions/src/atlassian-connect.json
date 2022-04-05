@@ -1,10 +1,10 @@
 {
   "key": "my-api",
   "name": "Async API",
-  "description": "My very first app",
+  "description": "Manage your async API on Confluence",
   "vendor": {
-    "name": "Angry Nerds",
-    "url": "https://www.atlassian.com/angrynerds"
+    "name": "P&D Vision",
+    "url": "https://www.zenuml.com"
   },
   "baseUrl": "{{localBaseUrl}}",
   "links": {
@@ -23,32 +23,6 @@
   ],
   "modules": {
     "generalPages": [
-      {
-        "key": "hello-world-page-jira",
-        "location": "system.top.navigation.bar",
-        "name": {
-          "value": "Hello World"
-        },
-        "url": "/hello-world",
-        "conditions": [
-          {
-            "condition": "user_is_logged_in"
-          }
-        ]
-      },
-      {
-        "key": "hello-world-page-confluence",
-        "location": "system.header/left",
-        "name": {
-          "value": "Hello World"
-        },
-        "url": "/hello-world",
-        "conditions": [
-          {
-            "condition": "user_is_logged_in"
-          }
-        ]
-      },
       {
         "key": "my-api-viewer",
         "location": "",
@@ -100,36 +74,9 @@
           "supportedContainerTypes": [
             "space"
           ],
-          "supportedChildTypes": [
-            "ac:my-api:note"
-          ],
           "indexing": {
             "enabled": true
           }
-        }
-      },
-      {
-        "key": "note",
-        "name": {
-          "value": "Notes"
-        },
-        "uiSupport": {
-          "contentViewComponent": {
-            "moduleKey": "my-api-viewer"
-          },
-          "listViewComponent": {
-            "moduleKey": "notesViewer"
-          },
-          "icons": {
-            "item": {
-              "url": "/images/notes.png"
-            }
-          }
-        },
-        "apiSupport": {
-          "supportedContainerTypes": [
-            "ac:my-api:async-api-doc"
-          ]
         }
       }
     ],
@@ -155,17 +102,6 @@
           }
         },
         "key": "editApiDoc"
-      },
-      {
-        "url": "/add-new-note?spaceKey={space.key}&contentId={content.id}",
-        "options": {
-          "height": "420px",
-          "width": "600px",
-          "header": {
-            "value": "Add a new note"
-          }
-        },
-        "key": "newNote"
       }
     ]
   },

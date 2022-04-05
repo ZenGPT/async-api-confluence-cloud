@@ -24,9 +24,8 @@ export default function ListOfApiDocs(this: any) {
         "expand": "version"
       },
       success: function (response: any) {
-        let customers = JSON.parse(response).results;
-        console.log(customers);
-        setApiDocsList(customers);
+        let apiDocs = JSON.parse(response).results;
+        setApiDocsList(apiDocs);
         setTimeout(localAp.resize, 1000);
       },
       error: function (err: any) {
@@ -46,16 +45,12 @@ export default function ListOfApiDocs(this: any) {
   }, []);
 
   useEffect(() => {
-    console.log('use effect !!!!!!');
     setDocs(apiDocsList
       .sort((doc1: any, doc2: any) => Number(doc2.id) - Number(doc1.id))
       .map((doc: any) => {
-        const selfUrl = new URL(doc._links.self);
-        const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
-        console.log(doc);
         return (
           <li key={doc.id}>
-            <ApiDocItem id={doc.id} link={apiDocDisplayUrl} description={''} title={doc.title} version={doc.version?.number}/>
+            <ApiDocItem id={doc.id} description={''} title={doc.title} version={doc.version?.number}/>
           </li>
         )
       }))

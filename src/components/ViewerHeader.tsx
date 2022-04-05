@@ -4,7 +4,6 @@ import queryString from "query-string";
 
 export default function ViewerHeader() {
   function editApiDoc() {
-    console.log("edit api doc");
     let query = queryString.parse(window.location.search);
     const contentId = query.contentId;
 

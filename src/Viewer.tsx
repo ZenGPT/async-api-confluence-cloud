@@ -33,7 +33,6 @@ export default function Viewer() {
         },
         success: function (response: any) {
           const apiDoc = JSON.parse(response).body;
-          console.log(apiDoc);
           setApiDoc(apiDoc);
           setLoaded(true);
           setTimeout(function () {

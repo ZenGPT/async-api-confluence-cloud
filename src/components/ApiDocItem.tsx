@@ -5,7 +5,6 @@ import yaml from "js-yaml";
 
 interface ApiDocSummary {
   id: string;
-  link: string;
   description: string;
   title: string;
   version: string;
@@ -17,7 +16,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
     // @ts-ignore
     AP.navigator.go('contentview', {contentId: props.id});
   }
-  const [apiDocSummary, setApiDocSummary] = useState<ApiDocSummary>({id: "", link: "", description: "", title: "", version: ""});
+  const [apiDocSummary, setApiDocSummary] = useState<ApiDocSummary>({id: "", description: "", title: "", version: ""});
   useEffect(() => {
     // @ts-ignore
     AP.request({
@@ -27,14 +26,11 @@ export default function ApiDocItem(props: ApiDocSummary) {
       },
       success: function (response: any) {
         const apiDoc = JSON.parse(response);
-        console.log(apiDoc);
         const apiDocContent = JSON.parse(apiDoc.body.raw.value);
-        console.log(apiDocContent.schema);
         const schema: any = yaml.load(apiDocContent.schema);
 
         setApiDocSummary({
           id: props.id,
-          link: props.link,
           description: schema?.info?.description,
           title: apiDoc.title,
           version: schema?.info?.version

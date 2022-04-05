@@ -71,7 +71,7 @@ export default function ListOfApiDocs(this: any) {
 
   return (
     <>
-      <section className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <section className="max-w-2xl mx-auto py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
         <header className="flex items-center justify-between">
           <h2 className="text-lg leading-6 font-medium text-black">Async API Documents</h2>
           <div className="flex">

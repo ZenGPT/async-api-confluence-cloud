@@ -23,10 +23,8 @@ export default function PureApiDocItem(props: any) {
       >
         <div className="flex-1 p-4 space-y-2 flex flex-col">
           <h3 className="text-sm font-medium text-gray-900">
-            <a href="/">
-              <span aria-hidden="true" className="absolute inset-0" />
-              {props.title}
-            </a>
+            <span aria-hidden="true" className="absolute inset-0" />
+            {props.title}
           </h3>
           <div className="text-sm text-gray-500">
             <ReactMarkdown children={props.description} remarkPlugins={[remarkGfm]}/>

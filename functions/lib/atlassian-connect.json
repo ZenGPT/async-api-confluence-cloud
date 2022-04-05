@@ -93,7 +93,7 @@
                 "key": "newApiDoc"
             },
             {
-                "url": "/edit?spaceKey={space.key}",
+                "url": "/edit?spaceKey={space.key}&contentId={content.id}",
                 "options": {
                     "height": "100%",
                     "width": "100%",

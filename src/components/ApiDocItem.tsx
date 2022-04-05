@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+
 import PureApiDocItem from "./PureApiDocItem";
 import yaml from "js-yaml";
 
@@ -40,11 +41,10 @@ export default function ApiDocItem(props: ApiDocSummary) {
         });
       }
     });
-
-  }, [props.id]);
+  }, [props.id, props.version]);
   return (
     <>
-      <PureApiDocItem id={props.id} description={apiDocSummary.description} title={apiDocSummary.title} version={apiDocSummary.version} onClick={onClick} />
+      <PureApiDocItem id={props.id} description={apiDocSummary.description} title={props.title} version={props.version} onClick={onClick} />
     </>
   )
 }

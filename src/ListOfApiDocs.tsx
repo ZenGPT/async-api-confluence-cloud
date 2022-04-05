@@ -1,17 +1,17 @@
 import {useEffect, useState} from 'react';
 import AP from './model/AP'
 import ApiDocItem from './components/ApiDocItem';
-import {PlusIcon} from "@heroicons/react/solid";
-interface ApiDocWrapper {
-  _links: {
-    self: string;
-    webui: string;
-  };
-  id: string;
-}
+import {PlusIcon, RefreshIcon} from "@heroicons/react/solid";
+// interface ApiDocWrapper {
+//   _links: {
+//     self: string;
+//     webui: string;
+//   };
+//   id: string;
+// }
 export default function ListOfApiDocs(this: any) {
-  const [apiDocsList, setApiDocsList] = useState<Array<ApiDocWrapper> >([]);
-
+  const [apiDocsList, setApiDocsList] = useState([]);
+  const [docs, setDocs] = useState< Array<JSX.Element> >();
   async function loadApiDocList() {
     const localAp = AP;
     const context = await localAp.context.getContext();
@@ -21,7 +21,7 @@ export default function ListOfApiDocs(this: any) {
       data: {
         "type": 'ac:my-api:async-api-doc',
         "spaceKey": context.confluence.space.key,
-        "expand": "children"
+        "expand": "version"
       },
       success: function (response: any) {
         let customers = JSON.parse(response).results;
@@ -42,18 +42,24 @@ export default function ListOfApiDocs(this: any) {
     const localAp = AP;
     loadApiDocList();
     localAp.events.onPublic('API_DOC_CREATED', loadApiDocList);
+    localAp.events.onPublic('API_DOC_UPDATED', loadApiDocList);
   }, []);
-  const docs = apiDocsList
-    .sort((doc1, doc2) => Number(doc2.id) - Number(doc1.id))
-    .map((doc) => {
-    const selfUrl = new URL(doc._links.self);
-    const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
-    return (
-      <li key={doc.id}>
-        <ApiDocItem id={doc.id} link={apiDocDisplayUrl} description={''} title={'Untitled'} version={'Unknown'}/>
-      </li>
-    )
-  });
+
+  useEffect(() => {
+    console.log('use effect !!!!!!');
+    setDocs(apiDocsList
+      .sort((doc1: any, doc2: any) => Number(doc2.id) - Number(doc1.id))
+      .map((doc: any) => {
+        const selfUrl = new URL(doc._links.self);
+        const apiDocDisplayUrl = `${selfUrl.protocol}//${selfUrl.host}/wiki${doc._links.webui}`
+        console.log(doc);
+        return (
+          <li key={doc.id}>
+            <ApiDocItem id={doc.id} link={apiDocDisplayUrl} description={''} title={doc.title} version={doc.version?.number}/>
+          </li>
+        )
+      }))
+  }, [apiDocsList]);
 
   function createApiDoc() {
     // @ts-ignore
@@ -68,15 +74,19 @@ export default function ListOfApiDocs(this: any) {
       <section className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <header className="flex items-center justify-between">
           <h2 className="text-lg leading-6 font-medium text-black">Async API Documents</h2>
+          <div className="flex">
+          <button onClick={loadApiDocList}
+            className="hover:bg-blue-200 hover:text-blue-800 group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2"
+          >
+            <RefreshIcon className="w-5 h-5" />
+            Reload
+          </button>
           <button onClick={createApiDoc}
-            className="hover:bg-light-blue-200 hover:text-light-blue-800 group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
-            <svg className="group-hover:text-light-blue-600 text-light-blue-500 mr-2" width="12" height="20"
-                 fill="currentColor">
-              <path fillRule="evenodd" clipRule="evenodd"
-                    d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z"/>
-            </svg>
+            className="hover:bg-blue-200 hover:text-blue-800 group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
+            <PlusIcon className="w-5 h-5" aria-hidden="true"/>
             New
           </button>
+          </div>
         </header>
         <ul className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 bg-gray-100 p-8">
           <li className="hover:shadow-lg flex rounded-lg bg-white">

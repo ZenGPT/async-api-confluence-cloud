@@ -32,8 +32,7 @@ export default function PureApiDocItem(props: any) {
             <ReactMarkdown children={props.description} remarkPlugins={[remarkGfm]}/>
           </div>
           <div className="flex-1 flex flex-col justify-end">
-            <p className="text-sm italic text-gray-500">{props.id}</p>
-            <p className="text-base font-medium text-gray-900">{props.version}</p>
+            <p className="text-xs text-gray-500">content ID: {props.id}, version: {props.version}</p>
           </div>
         </div>
         <div>

@@ -63,7 +63,7 @@ class Editor extends Component<{}, State> {
       "title": apiSchemaJson?.info?.title || 'Untitled',
       "body": {
         "raw": {
-          "value": JSON.stringify({"schema": this.state.schema, "config": this.state.config}),
+          "value": JSON.stringify({"code": this.state.schema, "config": this.state.config}),
           "representation": "raw"
         }
       },
@@ -141,7 +141,7 @@ class Editor extends Component<{}, State> {
 
           if(apiDoc) {
             const value = JSON.parse(apiDoc.raw.value);
-            that.updateSchemaFromExternalResource(value.schema);
+            that.updateSchemaFromExternalResource(value.schema || value.code);
             that.updateConfig(value.config);
             that.updateVersion(parsedResponse.version.number);
           }

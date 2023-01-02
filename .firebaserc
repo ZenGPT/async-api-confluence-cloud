@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "zenapi-prod"
+    "default": "zenapi-prod",
+    "yanhui": "pipelinebotyh"
   }
 }

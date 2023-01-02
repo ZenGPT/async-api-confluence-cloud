@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.descriptor = void 0;
+exports.renderAttachment = exports.descriptor = void 0;
 const functions = require("firebase-functions");
 const descriptorTemplate = require("./atlassian-connect.json");
 exports.descriptor = functions.https.onRequest((req, resp) => {
@@ -14,5 +14,8 @@ exports.descriptor = functions.https.onRequest((req, resp) => {
         },
     });
     resp.json(result);
+});
+exports.renderAttachment = functions.https.onRequest((request, response) => {
+    response.send(`<ac:image> <ri:attachment ri:filename="zenuml-${request.query.uuid}.png" /> </ac:image>`);
 });
 //# sourceMappingURL=index.js.map

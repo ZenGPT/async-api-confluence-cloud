@@ -12,6 +12,11 @@ console.log(`Building ${process.env.VUE_APP_GIT_TAG} (${process.env.VUE_APP_GIT_
 module.exports = {
   publicPath: '/confluence-plugin',
   pages: {
+    "index": {
+      entry: 'src/main.ts',
+      template: 'public/index.html',
+      chunks: ['chunk-common', 'chunk-index-vendors', 'index']
+    },
     "asyncapi-viewer": {
       entry: 'src/asyncapi-viewer.ts',
       template: 'public/asyncapi-viewer.html',

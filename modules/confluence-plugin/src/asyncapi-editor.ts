@@ -30,6 +30,7 @@ new Vue({
 
         // @ts-ignore
         await saveToPlatform(window.diagram);
+        AP.events.emitPublic('API_DOC_UPDATED');
         AP.dialog.close();
       }
     }

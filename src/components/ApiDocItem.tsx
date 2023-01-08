@@ -27,7 +27,7 @@ export default function ApiDocItem(props: ApiDocSummary) {
       success: function (response: any) {
         const apiDoc = JSON.parse(response);
         const apiDocContent = JSON.parse(apiDoc.body.raw.value);
-        const schema: any = yaml.load(apiDocContent.schema);
+        const schema: any = yaml.load(apiDocContent.code || apiDocContent.schema);
 
         setApiDocSummary({
           id: props.id,

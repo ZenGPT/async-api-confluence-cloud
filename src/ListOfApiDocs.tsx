@@ -59,7 +59,7 @@ export default function ListOfApiDocs(this: any) {
   function createApiDoc() {
     // @ts-ignore
     AP.dialog.create({
-      key: 'newApiDoc',
+      key: 'editApiDoc',
       chrome: false
     });
   }

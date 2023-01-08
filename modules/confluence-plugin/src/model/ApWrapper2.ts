@@ -126,15 +126,12 @@ export default class ApWrapper2 implements IApWrapper {
 
   async createCustomContent(content: Diagram) {
     const type = this.getCustomContentType();
-    // TODO: Can the type be blog?
-    const container = {id: await this._page.getPageId(), type: await this._page.getContentType()};
-    const bodyData = {
+    const bodyData: any = {
       "type": type,
       "title": content.title || `Untitled ${new Date().toISOString()}`,
       "space": {
         "key": this.currentSpace || await this._getCurrentSpace()
       },
-      "container": container,
       "body": {
         "raw": {
           "value": JSON.stringify(content),
@@ -142,6 +139,10 @@ export default class ApWrapper2 implements IApWrapper {
         }
       }
     };
+    const container = {id: await this._page.getPageId(), type: await this._page.getContentType()};
+    if(container.id) {
+      bodyData.container = container;
+    }
 
     const response = await this._requestFn({
       url: '/rest/api/content',

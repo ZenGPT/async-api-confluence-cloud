@@ -198,8 +198,8 @@ export default class ApWrapper2 implements IApWrapper {
     }));
     console.debug(`Found ${count} macros on page`);
 
-    const pageId = String(await this._page.getPageId());
-    let isCrossPageCopy = pageId !== String(customContent?.container?.id);
+    const pageId = await this._page.getPageId();
+    let isCrossPageCopy = pageId && String(pageId) !== String(customContent?.container?.id);
     if (isCrossPageCopy || count > 1) {
       diagram.isCopy = true;
       console.warn('Detected copied macro');
@@ -290,20 +290,21 @@ export default class ApWrapper2 implements IApWrapper {
     let result;
     // TODO: Do we really need to check whether it exists?
     const existing = await this.getCustomContentById(customContentId);
-    const pageId = String(await this._page.getPageId());
+    const pageId = await this._page.getPageId();
     const count = (await this._page.countMacros((m) => {
       return m?.customContentId?.value === customContentId;
     }));
 
+    // pageId is absent when editing in custom content list page;
     // Make sure we don't update custom content on a different page
     // and there is only one macro linked to the custom content on the current page.
-    if (existing && pageId === String(existing?.container?.id) && count === 1) {
+    if (existing && (!pageId || (String(pageId) === String(existing?.container?.id) && count === 1))) {
       result = await this.updateCustomContent(existing, value);
     } else {
       if(count > 1) {
         console.warn(`Detected copied macro on the same page ${pageId}.`);
       }
-      if (pageId !== String(existing?.container?.id)) {
+      if (String(pageId) !== String(existing?.container?.id)) {
         console.warn(`Detected copied macro on page ${pageId} (current) and ${existing?.container?.id}.`);
       }
       result = await this.createCustomContent(value);

@@ -35,7 +35,10 @@ const defaultContentProvider = function getCompositeContentProvider(apWrapper2: 
   const renderedFor = getUrlParam('rendered.for');
   const apWrapper = apWrapper2;
   if (renderedFor === 'custom-content-native') {
-    const idProvider = new UrlIdProvider();
+    const idProvider = {async getId() {
+      const data: any = await apWrapper.getDialogCustomData();
+      return data && (data['content.id'] || data.contentId);
+    }};
     const customContentStorageProvider = new CustomContentStorageProvider(apWrapper);
     return new ContentProvider(idProvider, customContentStorageProvider);
   }

@@ -109,12 +109,12 @@
                 "key": "newApiDoc"
             },
             {
-                "url": "/edit?spaceKey={space.key}&contentId={content.id}",
+                "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api&content.id={content.id}&rendered.for=custom-content-native",
                 "options": {
                     "height": "100%",
                     "width": "100%",
                     "header": {
-                        "value": "Create a new API Document"
+                        "value": "Edit Async API Document"
                     }
                 },
                 "key": "editApiDoc"

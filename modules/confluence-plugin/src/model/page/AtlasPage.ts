@@ -62,6 +62,10 @@ export class AtlasPage {
     let responseBody = '';
     try {
       const pageId = await this.getPageId();
+      if(!pageId) {
+        return [];
+      }
+      
       const response = await this._requestFn({
         url: `/rest/api/content/${pageId}?expand=body.atlas_doc_format&status=draft`,
         type: 'GET',

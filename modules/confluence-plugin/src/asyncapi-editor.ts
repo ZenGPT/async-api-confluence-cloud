@@ -53,6 +53,16 @@ async function initializeMacro() {
 
   // @ts-ignore
   window.diagram = doc;
+
+  //backwards compatible with old data model in Async API plugin
+  // @ts-ignore
+  if(doc.schema) {
+    // @ts-ignore
+    doc.code = doc.schema;
+    // @ts-ignore
+    delete doc.schema;
+  }
+
   // @ts-ignore
   loadMainFrame(doc.code);
 

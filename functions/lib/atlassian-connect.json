@@ -174,6 +174,60 @@
                         "defaultValue": "None"
                     }
                 ]
+            },
+            {
+                "key": "zenuml-embed-macro",
+                "name": {
+                    "value": "Embed a ZenUML Async API Spec (Beta)"
+                },
+                "renderModes": {
+                    "default": {
+                        "url": "/attachment?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&addonKey=my-api"
+                    }
+                },
+                "url": "/confluence-plugin/embed-viewer.html?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&outputType={output.type}&addonKey=my-api",
+                "description": {
+                    "value": "Embed ZenUML Diagram"
+                },
+                "outputType": "block",
+                "bodyType": "none",
+                "editor": {
+                    "url": "/confluence-plugin/embed-editor.html?version=2023.01&addonKey=my-api",
+                    "editTitle": {
+                        "value": "Edit Embedded ZenUML Diagram"
+                    },
+                    "insertTitle": {
+                        "value": "Embed ZenUML Diagram"
+                    },
+                    "width": "100%",
+                    "height": "100%",
+                    "cacheable": true
+                },
+                "icon": {
+                    "width": 16,
+                    "height": 16,
+                    "url": "/confluence-plugin/image/zenuml_logo.png"
+                },
+                "documentation": {
+                    "url": "https://zenuml.atlassian.net/wiki/spaces/Doc/overview"
+                },
+                "categories": [
+                    "visuals"
+                ],
+                "featured": true,
+                "parameters": [
+                    {
+                        "identifier": "diagramName",
+                        "name": {
+                            "value": "Diagram name (do not change)",
+                            "i18n": "diagramName"
+                        },
+                        "type": "string",
+                        "required": true,
+                        "multiple": false,
+                        "defaultValue": "None"
+                    }
+                ]
             }
         ]
     },

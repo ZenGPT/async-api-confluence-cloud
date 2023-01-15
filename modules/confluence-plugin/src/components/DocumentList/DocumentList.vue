@@ -5,10 +5,6 @@
         <div class="flex-1 flex items-center justify-between bg-white px-6">
           <nav class="flex text-sm font-medium leading-none text-slate-800">
             <a href="#" class="inline-block ml-2 px-3 py-2 hover:bg-gray-200 rounded-lg" :class="{'bg-gray-200': this.docTypeFilter === ''}" @click="setFilter('')">All</a>
-            <a href="#" class="inline-block ml-2 px-3 py-2 hover:bg-gray-200 rounded-lg" :class="{'bg-gray-200': this.docTypeFilter === 'sequence'}" @click="setFilter('sequence')">Sequence</a>
-            <a href="#" class="inline-block ml-2 px-3 py-2 hover:bg-gray-200 rounded-lg" :class="{'bg-gray-200': this.docTypeFilter === 'mermaid'}" @click="setFilter('mermaid')">Mermaid</a>
-            <a href="#" class="inline-block ml-2 px-3 py-2 hover:bg-gray-200 rounded-lg" :class="{'bg-gray-200': this.docTypeFilter === 'graph'}" @click="setFilter('graph')">Graph</a>
-            <a href="#" class="inline-block ml-2 px-3 py-2 hover:bg-gray-200 rounded-lg" :class="{'bg-gray-200': this.docTypeFilter === 'OpenApi'}" @click="setFilter('OpenApi')">Open API</a>
           </nav>
         </div>
         <div class="w-80 flex-shrink-0 px-4 py-3 bg-white">
@@ -24,7 +20,7 @@
           <div class="flex flex-col w-full max-w-xs flex-grow border-l border-r">
             <div class="flex flex-shrink-0 items-center px-4 py-2 justify-between border-b">
               <button class="flex items-center text-xs font-semibold text-gray-600">
-                Recent diagrams and API specs
+                Recent API specs
               </button>
             </div>
             <div class="flex flex-shrink-0 items-center px-4 py-2 justify-between border-b">
@@ -63,7 +59,7 @@
 
 <script>
   import SaveAndGoBackButton from "@/components/SaveAndGoBackButton";
-  import {DiagramType, getDiagramData} from "@/model/Diagram/Diagram";
+  import {getDiagramData} from "@/model/Diagram/Diagram";
   import EventBus from "@/EventBus";
   import {AtlasPage} from "@/model/page/AtlasPage";
   import AP from "@/model/AP";
@@ -117,20 +113,10 @@
       },
       previewSrc() {
         if (!this.picked) return;
-        function getViewerUrl(diagramType) {
-          if(diagramType === DiagramType.Sequence || diagramType === DiagramType.Mermaid) {
-            return '/sequence-viewer.html';
-          }
-          if(diagramType === DiagramType.Graph) {
-            return '/drawio/viewer.html';
-          }
-          if(diagramType === DiagramType.OpenApi) {
-            return '/swagger-ui.html';
-          }
-
-          console.warn(`Unknown diagramType: ${diagramType}`);
+        function getViewerUrl() {
+          return '/confluence-plugin/asyncapi-viewer.html';
         }
-        return `${getViewerUrl(this.picked.value.diagramType)}${window.location.search || '?'}&rendered.for=custom-content-native&content.id=${this.picked.id}&embedded=true`;
+        return `${getViewerUrl()}${window.location.search || '?'}&rendered.for=custom-content-native&content.id=${this.picked.id}&embedded=true`;
 
       },
       saveAndExit: function () {

@@ -26,6 +26,16 @@ module.exports = {
       entry: 'src/asyncapi-editor.ts',
       template: 'public/asyncapi-editor.html',
       chunks: ['chunk-common', 'chunk-asyncapi-editor-vendors', 'asyncapi-editor']
+    },
+    "embed-viewer": {
+      entry: 'src/embed-viewer.ts',
+      template: 'public/embed-viewer.html',
+      chunks: ['chunk-common', 'chunk-embed-viewer-vendors', 'embed-viewer']
+    },
+    "embed-editor": {
+      entry: 'src/embed-editor.ts',
+      template: 'public/embed-editor.html',
+      chunks: ['chunk-common', 'chunk-embed-editor-vendors', 'embed-editor']
     }
   },
   chainWebpack: config => {

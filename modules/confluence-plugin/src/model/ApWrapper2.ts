@@ -13,7 +13,7 @@ import {AtlasPage} from "@/model/page/AtlasPage";
 import CheckPermission, {PermissionCheckRequestFunc} from "@/model/page/CheckPermission";
 import { LocationTarget } from './ILocationContext';
 
-const CUSTOM_CONTENT_TYPES = ['zenuml-content-sequence', 'zenuml-content-graph'];
+const CUSTOM_CONTENT_TYPES = ['async-api-doc'];
 const SEARCH_CUSTOM_CONTENT_LIMIT = 1000;
 
 export default class ApWrapper2 implements IApWrapper {

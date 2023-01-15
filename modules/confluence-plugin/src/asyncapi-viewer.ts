@@ -8,7 +8,6 @@ import AP from "@/model/AP";
 import defaultContentProvider from "@/model/ContentProvider/CompositeContentProvider";
 import ApWrapper2 from "@/model/ApWrapper2";
 import AsyncApiViewer from "@/components/Viewer/AsyncApiViewer.vue";
-import { encode } from 'js-base64';
 import EventBus from './EventBus'
 import uuidv4 from "@/utils/uuid";
 
@@ -27,7 +26,9 @@ function loadMainFrame(data: string) {
   const e = document.getElementById('mainFrame');
   if (e) {
     const sessionStorageKey = `asyncapi-viewer-${uuidv4()}`;
+    //TODO: clean sessionStorage
     sessionStorage[sessionStorageKey] = data;
+    console.debug(`asyncapi-viewer - set sessionStorage[${sessionStorageKey}]=`, data);
 
     // @ts-ignore
     e.src = `/asyncapi-viewer/index.html?sessionStorageKey=${sessionStorageKey}`;
@@ -47,8 +48,9 @@ async function createAttachment(code?: string) {
 
 async function initializeMacro() {
   try {
-    const contentProvider = defaultContentProvider(new ApWrapper2(AP));
+    const contentProvider = defaultContentProvider(globals.apWrapper as ApWrapper2);
     const { doc } = await contentProvider.load();
+    console.debug(`asyncapi-viewer - loaded doc:`, doc);
 
     //@ts-ignore
     loadMainFrame(doc.code);

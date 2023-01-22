@@ -109,7 +109,7 @@
         "key": "newApiDoc"
       },
       {
-        "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api&content.id={content.id}&rendered.for=custom-content-native",
+        "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api&rendered.for=custom-content-native",
         "options": {
           "height": "100%",
           "width": "100%",

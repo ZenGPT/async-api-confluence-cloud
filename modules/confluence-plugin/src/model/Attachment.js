@@ -138,7 +138,7 @@ async function updateAttachmentProperties(attachmentMeta) {
 
 // Add new version, response does have `results` property.
 async function createAttachmentIfContentChanged(content) {
-  console.debug('Checking attachment for code:', content);
+  console.debug('Attachment.js - Checking attachment for code:', content);
   const attachment = await tryGetAttachment();
   const hash = md5(content);
   if (!attachment || hash !== attachment.metadata.comment) {

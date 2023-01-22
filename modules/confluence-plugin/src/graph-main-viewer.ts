@@ -12,6 +12,7 @@ import ApWrapper2 from "@/model/ApWrapper2";
 import GraphViewer from "@/components/Viewer/GraphViewer.vue";
 import EventBus from './EventBus'
 import { Diagram } from './model/Diagram/Diagram';
+import {DiagramType} from "@/model/Diagram/Diagram";
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -53,7 +54,12 @@ function renderGraph(graphXml: string) {
   setTimeout(async function () {
     AP.resize();
     try {
-      await createAttachmentIfContentChanged(graphXml);
+      if (globals.apWrapper.isDisplayMode() && await globals.apWrapper.canUserEdit()) {
+        trackEvent(DiagramType.Graph, 'before_create_attachment', 'info');
+        await createAttachmentIfContentChanged(graphXml);
+      } else {
+        trackEvent(DiagramType.Graph, 'skip_create_attachment', 'warning');
+      }
     } catch (e) {
       // Do not re-throw the error
       console.error('Error when creating attachment', e);

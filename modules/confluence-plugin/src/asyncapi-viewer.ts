@@ -10,6 +10,7 @@ import ApWrapper2 from "@/model/ApWrapper2";
 import AsyncApiViewer from "@/components/Viewer/AsyncApiViewer.vue";
 import EventBus from './EventBus'
 import uuidv4 from "@/utils/uuid";
+import {DiagramType} from "@/model/Diagram/Diagram";
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -37,8 +38,11 @@ function loadMainFrame(data: string) {
 
 async function createAttachment(code?: string) {
   try {
-    if (await globals.apWrapper.canUserEdit()) {
+    if (globals.apWrapper.isDisplayMode() && await globals.apWrapper.canUserEdit()) {
+      trackEvent(DiagramType.AsyncApi, 'before_create_attachment', 'info');
       await createAttachmentIfContentChanged(code);
+    } else {
+      trackEvent(DiagramType.AsyncApi, 'skip_create_attachment', 'warning');
     }
   } catch (e) {
     // Do not re-throw the error

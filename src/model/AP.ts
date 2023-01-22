@@ -9,3 +9,14 @@ const providedAp = window.AP;
 let onConfluence = providedAp && providedAp.confluence;
 export default onConfluence ? providedAp : new MockAp();
 
+function getUrlParam (param: string): string | null {
+  let codeParams = (new RegExp(param + '=([^&]*)')).exec(window.location.search);
+  if(codeParams && codeParams.length >= 1) {
+    const codedParam = codeParams[1];
+    return decodeURIComponent(codedParam);
+  }
+  return null;
+}
+
+// @ts-ignore
+export const hasMacroSupport = getUrlParam('version') >= '2023.01';

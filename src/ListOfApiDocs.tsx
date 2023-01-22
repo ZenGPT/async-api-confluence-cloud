@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import AP from './model/AP'
+import AP, {hasMacroSupport} from './model/AP'
 import ApiDocItem from './components/ApiDocItem';
 import {PlusIcon, RefreshIcon} from "@heroicons/react/solid";
 // interface ApiDocWrapper {
@@ -59,7 +59,7 @@ export default function ListOfApiDocs(this: any) {
   function createApiDoc() {
     // @ts-ignore
     AP.dialog.create({
-      key: 'editApiDoc',
+      key: hasMacroSupport ? 'editApiDoc' : 'newApiDoc',
       chrome: false
     });
   }

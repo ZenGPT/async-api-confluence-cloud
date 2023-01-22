@@ -29,7 +29,7 @@
         "name": {
           "value": "My API Doc"
         },
-        "url": "/view?contentId={content.id}",
+        "url": "/view?contentId={content.id}&version=2023.01",
         "conditions": [
           {
             "condition": "user_is_logged_in"
@@ -42,7 +42,7 @@
         "name": {
           "value": "My API Documents"
         },
-        "url": "/list?spaceKey={space.key}",
+        "url": "/list?spaceKey={space.key}&version=2023.01",
         "conditions": [
           {
             "condition": "user_is_logged_in"

@@ -7,7 +7,7 @@ import "./styles.css";
 
 const urlParams = new URLSearchParams(window.location.search);
 const sessionStorageKey = urlParams.get('sessionStorageKey');
-const data = sessionStorageKey && sessionStorage[sessionStorageKey] || localStorage.document;
+const data = (sessionStorageKey && sessionStorage[sessionStorageKey]) || localStorage.document;
 
 const rootElement = document.getElementById("root");
 const config = {

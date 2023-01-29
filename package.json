@@ -90,7 +90,9 @@
     "dist:confluence-plugin": "rm -rf build/confluence-plugin && cp -r modules/confluence-plugin/dist build/confluence-plugin",
     "confluence-plugin": "npm run build:confluence-plugin && npm run dist:confluence-plugin",
     "dist:all": "npm run dist:asyncapi-studio && npm run dist:asyncapi-viewer && npm run dist:confluence-plugin",
-    "build:dist-all": "npm run build && npm run dist:all"
+    "build:dist-all": "npm run build && npm run dist:all",
+    "build:dependencies": "npm run asyncapi-viewer && npm run asyncapi-studio && npm run confluence-plugin",
+    "build:all": "npm run build && npm run build:dependencies"
   },
   "browserslist": {
     "production": [

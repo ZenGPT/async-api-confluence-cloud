@@ -29,7 +29,7 @@
         "name": {
           "value": "My API Doc"
         },
-        "url": "/view?contentId={content.id}",
+        "url": "/view?contentId={content.id}&version=2023.01",
         "conditions": [
           {
             "condition": "user_is_logged_in"
@@ -42,12 +42,28 @@
         "name": {
           "value": "My API Documents"
         },
-        "url": "/list?spaceKey={space.key}",
+        "url": "/list?spaceKey={space.key}&version=2023.01",
         "conditions": [
           {
             "condition": "user_is_logged_in"
           }
         ]
+      },
+      {
+        "key": "zenuml-content-asyncapi-viewer-dialog",
+        "location": "none",
+        "url": "/confluence-plugin/asyncapi-viewer.html?version=2023.01&spaceKey={space.key}&addonKey=my-api",
+        "name": {
+          "value": "ZenUML AsyncAPI Viewer Dialog"
+        }
+      },
+      {
+        "key": "zenuml-content-asyncapi-editor-dialog",
+        "location": "none",
+        "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api",
+        "name": {
+          "value": "ZenUML AsyncAPI Editor Dialog"
+        }
       }
     ],
     "customContent": [
@@ -72,7 +88,7 @@
         "apiSupport": {
           "bodyType": "raw",
           "supportedContainerTypes": [
-            "space"
+            "space", "page", "blogpost", "comment"
           ],
           "indexing": {
             "enabled": true
@@ -93,15 +109,125 @@
         "key": "newApiDoc"
       },
       {
-        "url": "/edit?spaceKey={space.key}&contentId={content.id}",
+        "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api&rendered.for=custom-content-native",
         "options": {
           "height": "100%",
           "width": "100%",
           "header": {
-            "value": "Create a new API Document"
+            "value": "Edit Async API Document"
           }
         },
         "key": "editApiDoc"
+      }
+    ],
+    "dynamicContentMacros": [
+      {
+        "key": "zenuml-asyncapi-macro",
+        "name": {
+          "value": "ZenUML Async API Spec"
+        },
+        "renderModes": {
+          "default": {
+            "url": "/attachment?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&addonKey=my-api"
+          }
+        },
+        "url": "/confluence-plugin/asyncapi-viewer.html?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&outputType={output.type}&addonKey=my-api",
+        "description": {
+          "value": "Async API"
+        },
+        "outputType": "block",
+        "bodyType": "none",
+        "editor": {
+          "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&addonKey=my-api",
+          "editTitle": {
+            "value": "Async API"
+          },
+          "insertTitle": {
+            "value": "Async API"
+          },
+          "width": "100%",
+          "height": "100%",
+          "cacheable": true
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/confluence-plugin/image/zenuml_logo.png"
+        },
+        "documentation": {
+          "url": "https://zenuml.atlassian.net/wiki/spaces/Doc/overview"
+        },
+        "categories": [
+          "visuals"
+        ],
+        "featured": true,
+        "parameters": [
+          {
+            "identifier": "diagramName",
+            "name": {
+              "value": "Diagram name (do not change)",
+              "i18n": "diagramName"
+            },
+            "type": "string",
+            "required": true,
+            "multiple": false,
+            "defaultValue": "None"
+          }
+        ]
+      },
+      {
+        "key": "zenuml-embed-macro",
+        "name": {
+          "value": "Embed a ZenUML Async API Spec (Beta)"
+        },
+        "renderModes": {
+          "default": {
+            "url": "/attachment?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&addonKey=my-api"
+          }
+        },
+        "url": "/confluence-plugin/embed-viewer.html?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&outputType={output.type}&addonKey=my-api",
+        "description": {
+          "value": "Embed ZenUML Diagram"
+        },
+        "outputType": "block",
+        "bodyType": "none",
+        "editor": {
+          "url": "/confluence-plugin/embed-editor.html?version=2023.01&addonKey=my-api",
+          "editTitle": {
+            "value": "Edit Embedded ZenUML Diagram"
+          },
+          "insertTitle": {
+            "value": "Embed ZenUML Diagram"
+          },
+          "width": "100%",
+          "height": "100%",
+          "cacheable": true
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/confluence-plugin/image/zenuml_logo.png"
+        },
+        "documentation": {
+          "url": "https://zenuml.atlassian.net/wiki/spaces/Doc/overview"
+        },
+        "categories": [
+          "visuals"
+        ],
+        "featured": true,
+        "parameters": [
+          {
+            "identifier": "diagramName",
+            "name": {
+              "value": "Diagram name (do not change)",
+              "i18n": "diagramName"
+            },
+            "type": "string",
+            "required": true,
+            "multiple": false,
+            "defaultValue": "None"
+          }
+        ]
       }
     ]
   },

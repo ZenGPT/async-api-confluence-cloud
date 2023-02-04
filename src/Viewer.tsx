@@ -56,7 +56,7 @@ export default function Viewer() {
         <>
           <ViewerHeader/>
           <AsyncApiWrapper>
-            <AsyncApi schema={value.schema} config={value.schema}/>
+            <AsyncApi schema={value.code || value.schema} config={value.config}/>
           </AsyncApiWrapper>
         </>
       );

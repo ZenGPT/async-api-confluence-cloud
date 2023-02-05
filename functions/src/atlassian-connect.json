@@ -176,7 +176,7 @@
         ]
       },
       {
-        "key": "zenuml-embed-macro",
+        "key": "zenuml-asyncapi-embed-macro",
         "name": {
           "value": "Embed a ZenUML Async API Spec (Beta)"
         },

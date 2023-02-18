@@ -54,7 +54,7 @@
         "location": "none",
         "url": "/confluence-plugin/asyncapi-viewer.html?version=2023.01&spaceKey={space.key}&addonKey=my-api",
         "name": {
-          "value": "ZenUML AsyncAPI Viewer Dialog"
+          "value": "AsyncAPI Viewer Dialog"
         }
       },
       {
@@ -62,7 +62,7 @@
         "location": "none",
         "url": "/confluence-plugin/asyncapi-editor.html?version=2023.01&spaceKey={space.key}&addonKey=my-api",
         "name": {
-          "value": "ZenUML AsyncAPI Editor Dialog"
+          "value": "AsyncAPI Editor Dialog"
         }
       }
     ],
@@ -124,7 +124,7 @@
       {
         "key": "zenuml-asyncapi-macro",
         "name": {
-          "value": "ZenUML Async API Spec"
+          "value": "Async API Spec"
         },
         "renderModes": {
           "default": {
@@ -178,7 +178,7 @@
       {
         "key": "zenuml-asyncapi-embed-macro",
         "name": {
-          "value": "Embed a ZenUML Async API Spec (Beta)"
+          "value": "Embed Async API Spec"
         },
         "renderModes": {
           "default": {
@@ -187,17 +187,17 @@
         },
         "url": "/confluence-plugin/embed-viewer.html?version=2023.01&spaceKey={space.key}&pageId={page.id}&pageVersion={page.version}&macroId={macro.id}&uuid={uuid}&outputType={output.type}&addonKey=my-api",
         "description": {
-          "value": "Embed ZenUML Diagram"
+          "value": "Embed Async API Spec"
         },
         "outputType": "block",
         "bodyType": "none",
         "editor": {
           "url": "/confluence-plugin/embed-editor.html?version=2023.01&addonKey=my-api",
           "editTitle": {
-            "value": "Edit Embedded ZenUML Diagram"
+            "value": "Embed Async API Spec"
           },
           "insertTitle": {
-            "value": "Embed ZenUML Diagram"
+            "value": "Embed Async API Spec"
           },
           "width": "100%",
           "height": "100%",

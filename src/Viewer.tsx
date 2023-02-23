@@ -1,16 +1,9 @@
-import {useEffect, useState} from "react";
-import AsyncApi from "@asyncapi/react-component";
+import {useEffect} from "react";
 import AP from './model/AP'
-import {AsyncApiWrapper} from "./components";
+import {uuidv4} from "./common/helpers";
 import ViewerHeader from "./components/ViewerHeader";
-interface ApiDoc {
-  raw: {
-    value: string;
-  }
-}
+
 export default function Viewer() {
-  const [loaded, setLoaded] = useState(false);
-  const [apiDoc, setApiDoc] = useState<ApiDoc>();
 
   function getUrlParam (param: string) {
     let regExp = new RegExp(`${param}=([^&]*)`);
@@ -33,8 +26,18 @@ export default function Viewer() {
         },
         success: function (response: any) {
           const apiDoc = JSON.parse(response).body;
-          setApiDoc(apiDoc);
-          setLoaded(true);
+          
+          const sessionStorageKey = `asyncapi-viewer-${uuidv4()}`;
+          //TODO: clean sessionStorage
+          sessionStorage[sessionStorageKey] = JSON.parse(apiDoc.raw.value).code;
+          console.debug(`Viewer - set sessionStorage[${sessionStorageKey}]=`, sessionStorage[sessionStorageKey]);
+
+          const e = document.getElementById('mainFrame');
+          if(e) {
+            // @ts-ignore
+            e.src = `/asyncapi-viewer/index.html?sessionStorageKey=${sessionStorageKey}`;
+          }
+
           setTimeout(function () {
             localAp.resize();
             localAp.sizeToParent();
@@ -49,21 +52,24 @@ export default function Viewer() {
     localAp.events.onPublic('API_DOC_UPDATED', loadContent);
 
   }, []);
-  function getContent() {
-    if(loaded && apiDoc) {
-      const value = JSON.parse(apiDoc.raw.value);
-      return (
-        <>
-          <ViewerHeader/>
-          <AsyncApiWrapper>
-            <AsyncApi schema={value.code || value.schema} config={value.config}/>
-          </AsyncApiWrapper>
-        </>
-      );
-    } else {
-      return "Loading";
-    }
 
+  function iframeLoaded() {
+    const frame = document.getElementById('mainFrame');
+    if(frame) {
+      // @ts-ignore
+      frame.height = frame.contentWindow.document.body.scrollHeight + "px";
+      AP.resize();
+    }
+  }
+
+  function getContent() {
+    return (
+      <>
+        <ViewerHeader/>
+        
+        <iframe id="mainFrame" title="mainFrame" width="100%" height="100%" onLoad={iframeLoaded}></iframe>
+      </>
+    );
   }
   return (
     <div>

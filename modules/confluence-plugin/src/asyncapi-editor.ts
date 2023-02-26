@@ -10,8 +10,8 @@ import { DiagramType } from "@/model/Diagram/Diagram";
 import { saveToPlatform } from "@/model/ContentProvider/Persistence";
 import ApWrapper2 from "@/model/ApWrapper2";
 import './utils/IgnoreEsc.ts'
-import { encode } from 'js-base64';
 import yaml from 'js-yaml';
+import {example} from './utils/asyncapi-example';
 
 const compositeContentProvider = defaultContentProvider(new ApWrapper2(AP));
 
@@ -19,7 +19,7 @@ new Vue({
   render: h => h(SaveAndGoBackButton, {
     props: {
       saveAndExit: async () => {
-        const code = localStorage.document;
+        const code = localStorage.document || example;
         const apiSchemaJson: any = yaml.load(code);
         // @ts-ignore
         window.diagram = Object.assign(window.diagram || {}, 

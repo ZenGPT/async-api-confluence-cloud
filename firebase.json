@@ -21,6 +21,14 @@
         "function": "renderAttachment"
       },
       {
+        "source": "/installed",
+        "function": "installed"
+      },
+      {
+        "source": "/uninstalled",
+        "function": "uninstalled"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

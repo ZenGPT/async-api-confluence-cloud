@@ -28,10 +28,10 @@
   </noscript>
   <div id="asyncapi"></div>
   <script src="https://unpkg.com/@asyncapi/react-component@latest/browser/standalone/index.js"></script>
-  <script type="module">
-    import * as htmlToImage from 'html-to-image';
+  <script>
     
     const rootElement = document.getElementById("asyncapi");
+    window.rootElement = rootElement;
     const urlParams = new URLSearchParams(window.location.search);
     const sessionStorageKey = urlParams.get('sessionStorageKey');
     const data = (sessionStorageKey && sessionStorage[sessionStorageKey]) || localStorage.document;
@@ -53,25 +53,6 @@
       }, rootElement);
     }
 
-    window.toPng = () => {
-      const root = rootElement || document.body;
-      return htmlToImage.toBlob(root, { bgcolor: 'white' });
-    }
-
-    window.addEventListener('message', async ({ source, data }) => {
-      if (source.location.href === window.location.href) {
-        return;
-      }
-      if (data?.action === 'load') {
-        console.debug('loading data:\n', data?.data);
-        render(data?.data);
-      }
-      else if (data?.action === 'export') {
-        const data = await window.toPng();
-        source.postMessage({ action: 'export.result', data });
-        console.debug('asyncapi-viewer - PNG exported');
-      }
-    })
   </script>
 
 </body>

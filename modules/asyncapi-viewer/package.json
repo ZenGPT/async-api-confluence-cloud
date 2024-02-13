@@ -5,17 +5,19 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "html-to-image": "^1.11.1"
-  },
-  "devDependencies": {
+    "html-to-image": "^1.11.11"
   },
   "scripts": {
-    "build": "cp public/index.html build"
+    "build": "react-app-rewired build"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "^5.0.1"
+  }
 }

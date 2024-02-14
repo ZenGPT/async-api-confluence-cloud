@@ -1,4 +1,5 @@
 import * as htmlToImage from 'html-to-image';
+import "./styles.css";
 
 window.toPng = () => {
   const root = window.rootElement || document.body;

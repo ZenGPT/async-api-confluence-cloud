@@ -12,7 +12,27 @@ export default function PureApiDocItem(props: any) {
         contentId: props.id
       }
     });
+  }
 
+  function deleteApiDoc() {
+    const contentId = props.id;
+    // @ts-ignore
+    const localAp = AP;
+    localAp.request({
+      url: `/rest/api/content/${contentId}`,
+      data: {
+        "expand": "body.raw,container"
+      },
+      success: function (response: any) {
+        const container = JSON.parse(response).container;
+        if(container?.type === 'page') {
+          alert('This content is currently in use in a page. Please update the page to remove the usage first.')
+        } else {
+          alert('Are you sure to delete?')
+        }
+      }
+    });
+    
   }
 
   return (
@@ -53,6 +73,15 @@ export default function PureApiDocItem(props: any) {
               >
                 <PencilAltIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
                 <span className="ml-3">Edit</span>
+              </button>
+            </div>
+            <div className="-ml-px w-0 flex-1 flex"
+              onClick={deleteApiDoc}
+            >
+              <button
+                className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+              >
+                <span className="ml-3">Delete</span>
               </button>
             </div>
           </div>

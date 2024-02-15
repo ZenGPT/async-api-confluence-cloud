@@ -92,7 +92,8 @@
     "dist:all": "npm run dist:asyncapi-studio && npm run dist:asyncapi-viewer && npm run dist:confluence-plugin",
     "build:dist-all": "npm run build && npm run dist:all",
     "build:dependencies": "npm run asyncapi-viewer && npm run asyncapi-studio && npm run confluence-plugin",
-    "build:all": "npm run build && npm run build:dependencies"
+    "build:all": "npm run build && npm run build:dependencies",
+    "build:only": "npm run build && npm run dist:all"
   },
   "browserslist": {
     "production": [

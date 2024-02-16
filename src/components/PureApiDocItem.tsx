@@ -14,21 +14,30 @@ export default function PureApiDocItem(props: any) {
     });
   }
 
+  function reloadPage() {
+    // @ts-ignore
+    window.location.href = window.location.href
+  }
+
   function deleteApiDoc() {
     const contentId = props.id;
     // @ts-ignore
     const localAp = AP;
+    const url = `/rest/api/content/${contentId}`;
     localAp.request({
-      url: `/rest/api/content/${contentId}`,
+      url,
       data: {
-        "expand": "body.raw,container"
+        "expand": "body.raw,container,version,space"
       },
       success: function (response: any) {
-        const container = JSON.parse(response).container;
+        const content = JSON.parse(response);
+        const container = content.container;
         if(container?.type === 'page') {
           alert('This content is currently in use in a page. Please update the page to remove the usage first.')
         } else {
           alert('Are you sure to delete?')
+          // @ts-ignore
+          localAp.request({type: 'PUT', url, contentType: 'application/json', data: JSON.stringify(Object.assign({}, content, {status: 'trashed', version: {number: content.version.number + 1}}))}).then(reloadPage, () => alert('Error'));
         }
       }
     });

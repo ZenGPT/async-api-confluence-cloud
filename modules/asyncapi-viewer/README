@@ -1,0 +1,5 @@
+Problems with @asyncapi/react-component@1.2.23:
+* Cannot find module: 'nimma/fallbacks': https://github.com/stoplightio/spectral/discussions/2383
+
+Pending issue:
+* Vertical scroll bar in macro view

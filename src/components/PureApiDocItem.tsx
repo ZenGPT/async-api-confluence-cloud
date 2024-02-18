@@ -12,6 +12,35 @@ export default function PureApiDocItem(props: any) {
         contentId: props.id
       }
     });
+  }
+
+  function reloadPage() {
+    // eslint-disable-next-line no-self-assign
+    window.location.href = window.location.href
+  }
+
+  function deleteApiDoc() {
+    const contentId = props.id;
+    // @ts-ignore
+    const localAp = AP;
+    const url = `/rest/api/content/${contentId}`;
+    localAp.request({
+      url,
+      data: {
+        "expand": "body.raw,container,version,space"
+      },
+      success: function (response: any) {
+        const content = JSON.parse(response);
+        const container = content.container;
+        if(container?.type === 'page') {
+          alert('This content is currently in use in a page. Please update the page to remove the usage first.')
+        } else {
+          alert('Are you sure to delete?')
+          // @ts-ignore
+          localAp.request({type: 'PUT', url, contentType: 'application/json', data: JSON.stringify(Object.assign({}, content, {status: 'trashed', version: {number: content.version.number + 1}}))}).then(reloadPage, () => alert('Error'));
+        }
+      }
+    });
 
   }
 
@@ -53,6 +82,15 @@ export default function PureApiDocItem(props: any) {
               >
                 <PencilAltIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
                 <span className="ml-3">Edit</span>
+              </button>
+            </div>
+            <div className="-ml-px w-0 flex-1 flex"
+              onClick={deleteApiDoc}
+            >
+              <button
+                className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+              >
+                <span className="ml-3">Delete</span>
               </button>
             </div>
           </div>

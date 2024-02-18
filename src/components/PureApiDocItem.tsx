@@ -15,7 +15,7 @@ export default function PureApiDocItem(props: any) {
   }
 
   function reloadPage() {
-    // @ts-ignore
+    // eslint-disable-next-line no-self-assign
     window.location.href = window.location.href
   }
 
@@ -41,7 +41,7 @@ export default function PureApiDocItem(props: any) {
         }
       }
     });
-    
+
   }
 
   return (

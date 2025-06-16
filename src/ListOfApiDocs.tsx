@@ -10,6 +10,7 @@ import {PlusIcon, RefreshIcon} from "@heroicons/react/solid";
 //   id: string;
 // }
 export default function ListOfApiDocs(this: any) {
+  console.log('ListOfApiDocs component loaded!', {hasMacroSupport}); // Add this for debugging
   const [apiDocsList, setApiDocsList] = useState([]);
   const [docs, setDocs] = useState< Array<JSX.Element> >();
   async function loadApiDocList() {
@@ -57,9 +58,13 @@ export default function ListOfApiDocs(this: any) {
   }, [apiDocsList]);
 
   function createApiDoc() {
+    console.log('createApiDoc function called!'); // Add this line for debugging
     // @ts-ignore
+    let key = hasMacroSupport ? 'editApiDoc' : 'newApiDoc';
+    console.log('Current URL:', window.location.href); // Add this for debugging
+
     AP.dialog.create({
-      key: hasMacroSupport ? 'editApiDoc' : 'newApiDoc',
+      key: key,
       chrome: false
     });
   }

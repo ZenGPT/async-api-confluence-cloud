@@ -32,7 +32,7 @@ export class AtlasPage {
       });
     });
   }
-  
+
   async _getContext(): Promise<IContext> {
     if(this._apContext) {
       return this._apContext;
@@ -57,7 +57,7 @@ export class AtlasPage {
   }
 
   async getContentType() {
-    return (await this._getLocationContext()).contentType;
+    return 'page';
   }
 
   async getHref() {

@@ -1,14 +1,12 @@
 import { Component } from 'react';
-import * as codemirror from 'codemirror';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import { yaml } from '@codemirror/lang-yaml';
 
 import { CodeEditorWrapper } from './styled';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-
-import 'codemirror/mode/yaml/yaml';
-import 'codemirror/mode/javascript/javascript';
 
 interface Props {
   code: string;
@@ -39,29 +37,33 @@ class CodeEditorComponent extends Component<Props, State> {
       state: { code },
     } = this;
 
+    // Map modes to extensions
+    const getExtensions = () => {
+      if (mode === 'javascript' || mode === 'application/json') {
+        return [javascript({ jsx: true })];
+      }
+      if (mode === 'yaml') {
+        return [yaml()];
+      }
+      return [];
+    };
+
     return (
       <CodeEditorWrapper>
         <CodeMirror
           value={code}
-          options={{
-            mode,
-            lineNumbers: true,
-            lineWrapping: true,
-            theme: 'material',
-            tabSize: 2,
-            indentWithTabs: false,
-          }}
+          theme="dark"
+          extensions={getExtensions()}
           onChange={this.onChangeValue}
+          basicSetup={{
+            lineNumbers: true,
+          }}
         />
       </CodeEditorWrapper>
     );
   }
 
-  private onChangeValue = (
-    editor: codemirror.Editor,
-    data: codemirror.EditorChange,
-    value: string,
-  ): void => {
+  private onChangeValue = (value: string): void => {
     this.props.parentCallback(value);
   };
 }

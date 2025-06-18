@@ -15,7 +15,7 @@ jobs:
           node-version: 18
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 9
       - run: cd modules/asyncapi-studio && pnpm install --force && pnpm run build:studio
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

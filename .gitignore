@@ -5,5 +5,9 @@ node_modules
 *.pem
 credentials.json
 build
-.firebase
+.firebase™
 dist
+
+.cursor
+# Logs
+ui-debug.log

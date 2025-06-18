@@ -101,7 +101,7 @@
     "build:asyncapi-viewer": "cd modules/asyncapi-viewer && npm install && npm run build",
     "dist:asyncapi-viewer": "rm -rf build/asyncapi-viewer && cp -r modules/asyncapi-viewer/build build/asyncapi-viewer",
     "asyncapi-viewer": "npm run build:asyncapi-viewer && npm run dist:asyncapi-viewer",
-    "build:confluence-plugin": "cd modules/confluence-plugin && yarn install && yarn build:full",
+    "build:confluence-plugin": "cd modules/confluence-plugin && pnpm install && pnpm build:full",
     "dist:confluence-plugin": "rm -rf build/confluence-plugin && cp -r modules/confluence-plugin/dist build/confluence-plugin",
     "confluence-plugin": "npm run build:confluence-plugin && npm run dist:confluence-plugin",
     "dist:all": "npm run dist:asyncapi-studio && npm run dist:asyncapi-viewer && npm run dist:confluence-plugin",

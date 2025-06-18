@@ -1,6 +1,5 @@
 import * as functions from "firebase-functions";
 import * as descriptorTemplate from "./atlassian-connect.json";
-import * as express from 'express';
 
 var Mixpanel = require('mixpanel');
  
@@ -26,7 +25,7 @@ export const renderAttachment = functions.https.onRequest((request, response) =>
   response.send(`<ac:image> <ri:attachment ri:filename="zenuml-${request.query.uuid}.png" /> </ac:image>`);
 });
 
-function handleLifecycleEvent(req: express.Request) {
+function handleLifecycleEvent(req: functions.Request) {
   if(!req.body) {
     return;
   }

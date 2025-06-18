@@ -16,7 +16,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-      - run: cd modules/asyncapi-studio && pnpm install --force && pnpm run build:studio
+      - run: pnpm install --frozen-lockfile --force && pnpm run build:all
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

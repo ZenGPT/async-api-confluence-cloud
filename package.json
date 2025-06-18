@@ -95,7 +95,7 @@
     "install:reactcomp": "chmod +x ./bump-react-comp.sh && ./bump-react-comp.sh",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "build:asyncapi-studio": "cd modules/asyncapi-studio && pnpm install --force && pnpm run build:studio",
+    "build:asyncapi-studio": "cd modules/asyncapi-studio && pnpm install && pnpm run build:studio",
     "dist:asyncapi-studio": "rm -rf build/asyncapi-studio && cp -r modules/asyncapi-studio/apps/studio/build build/asyncapi-studio",
     "asyncapi-studio": "pnpm run build:asyncapi-studio && pnpm run dist:asyncapi-studio",
     "build:asyncapi-viewer": "cd modules/asyncapi-viewer && pnpm install && pnpm run build",

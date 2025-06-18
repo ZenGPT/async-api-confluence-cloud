@@ -16,7 +16,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-      - run: pnpm install --frozen-lockfile --force && pnpm run build:all
+      - run: pnpm install --frozen-lockfile && pnpm run build:all
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

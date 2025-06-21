@@ -104,6 +104,10 @@ module.exports = {
   },
   productionSourceMap: false,
   configureWebpack: {
+    target: 'web',
+    output: {
+      chunkFormat: 'array-push'
+    },
     plugins: [
       new SpeedMeasureWebpackPlugin(),
     ],

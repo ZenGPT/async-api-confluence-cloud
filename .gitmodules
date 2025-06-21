@@ -1,5 +1,4 @@
 [submodule "modules/asyncapi-studio"]
 	path = modules/asyncapi-studio
 	url = git@github.com:Async-API/asyncapi-studio.git
-[submodule "asyncapi-studio"]
 	branch = v0.16.0-custom-build

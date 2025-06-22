@@ -121,8 +121,12 @@
     }
   },
   "browserslist": [
-    "last 2 years"
+    "defaults",
+    "not IE 11"
   ],
+  "resolutions": {
+    "@achrinza/node-ipc": "10.1.11"
+  },
   "externals": {
     "react": "React",
     "react-dom": "ReactDOM"

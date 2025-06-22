@@ -121,7 +121,8 @@
     }
   },
   "browserslist": [
-    "last 2 years"
+    "defaults",
+    "not IE 11"
   ],
   "externals": {
     "react": "React",

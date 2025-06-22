@@ -18,5 +18,8 @@ function getUrlParam (param: string): string | null {
   return null;
 }
 
+const versionParam = getUrlParam('version');
+console.log('URL version parameter:', versionParam); // Debug the URL parameter
 // @ts-ignore
-export const hasMacroSupport = getUrlParam('version') >= '2023.01';
+export const hasMacroSupport = versionParam >= '2023.01';
+console.log('hasMacroSupport calculated as:', hasMacroSupport); // Debug the final value

@@ -111,6 +111,9 @@ module.exports = {
     plugins: [
       new SpeedMeasureWebpackPlugin(),
     ],
+    output: {
+      chunkFormat: 'array-push'
+    },
     resolve: {
       fallback: {"stream": false},
       alias: {

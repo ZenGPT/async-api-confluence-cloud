@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react';
-import AP, {hasMacroSupport} from './model/AP'
-import ApiDocItem from './components/ApiDocItem';
-import {PlusIcon, RefreshIcon} from "@heroicons/react/solid";
+import { useEffect, useState } from "react";
+import AP, { hasMacroSupport } from "./model/AP";
+import ApiDocItem from "./components/ApiDocItem";
+import { PlusIcon, RefreshIcon } from "@heroicons/react/solid";
 // interface ApiDocWrapper {
 //   _links: {
 //     self: string;
@@ -10,6 +10,7 @@ import {PlusIcon, RefreshIcon} from "@heroicons/react/solid";
 //   id: string;
 // }
 export default function ListOfApiDocs(this: any) {
+  console.log('ListOfApiDocs component loaded!', {hasMacroSupport}); // Add this for debugging
   const [apiDocsList, setApiDocsList] = useState([]);
   const [docs, setDocs] = useState< Array<JSX.Element> >();
   async function loadApiDocList() {
@@ -57,9 +58,9 @@ export default function ListOfApiDocs(this: any) {
   }, [apiDocsList]);
 
   function createApiDoc() {
-    // @ts-ignore
+    console.log('createApiDoc function called!'); // Add this line for debugging
     AP.dialog.create({
-      key: hasMacroSupport ? 'editApiDoc' : 'newApiDoc',
+      key: 'editApiDoc',
       chrome: false
     });
   }

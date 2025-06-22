@@ -20,9 +20,8 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "suppressImplicitAnyIndexErrors": true,
     "resolveJsonModule": true
   },
   "include": ["./"],
-  "exclude": ["*/node_modules/**/*", "*/lib/**/*"]
+  "exclude": ["*/node_modules/**/*", "*/lib/**/*", "src/resolvers.js"]
 }

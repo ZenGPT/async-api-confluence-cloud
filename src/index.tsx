@@ -1,41 +1,45 @@
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
 } from "react-router-dom";
 import './index.css'
-import Playground from './Playground';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import "@asyncapi/react-component/lib/styles/fiori.css";
 import './common/icons';
 import ListOfApiDocs from "./ListOfApiDocs";
 import Viewer from "./Viewer";
-import Editor from "./Editor";
 
 function App() {
-    return (
-        <Router>
-            <Switch>
-                <Route path="/create">
-                    <Playground/>
-                </Route>
-                <Route path="/view">
-                    <Viewer/>
-                </Route>
-                <Route path="/edit">
-                    <Editor/>
-                </Route>
-                <Route path="/list">
-                    <ListOfApiDocs/>
-                </Route>
-                <Route path="/">
-                  <ListOfApiDocs/>
-                </Route>
-            </Switch>
-        </Router>
-    )
+    try {
+        return (
+            <Router>
+                <Routes>
+                    {/*<Route path="/create" element={<Playground/>} />*/}
+                    <Route path="/view" element={<Viewer/>} />
+                    {/*<Route path="/edit" element={<Editor/>} />*/}
+                    <Route path="/list" element={<ListOfApiDocs/>} />
+                    <Route path="/" element={<ListOfApiDocs/>} />
+                </Routes>
+            </Router>
+        )
+    } catch (error) {
+        console.error('App rendering error:', error);
+        return (
+            <div style={{ padding: '20px', color: 'red' }}>
+                <h1>Error loading app</h1>
+                <p>Check the console for details.</p>
+            </div>
+        );
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
